@@ -1,0 +1,6 @@
+README.md
+.git/
+.github/
+node_modules/
+scripts/
+schemas/
