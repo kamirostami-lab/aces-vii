@@ -1,8 +1,89 @@
 ---
 layout: iaa-base.njk
-title: Alliance
+title: Invest Australia Alliance
+description: Enter the Australian market with certainty. The Invest Australia Alliance delivers strategic intelligence, regulatory expertise, and operational infrastructure.
 permalink: /alliance/index.html
-description: Invest Australia Alliance
 ---
-<h1>Invest Australia Alliance</h1>
-<p>Setup in progress.</p>
+
+<main class="iaa-canvas">
+  <header class="iaa-hero-editorial">
+    <div class="iaa-hero-content">
+      <span class="iaa-superhead">Invest Australia Alliance</span>
+      <h1 class="iaa-display-title">Enter the Australian market with certainty.</h1>
+      <p class="iaa-lead-text">Invest Australia Alliance delivers the strategic intelligence, regulatory expertise, and operational infrastructure international businesses require for accelerated Australian market entry.</p>
+      <div class="iaa-hero-actions">
+        <a href="/contact/" class="btn-iaa-primary">Discuss strategy</a>
+        <a href="#capabilities" class="btn-iaa-text">Explore capabilities →</a>
+      </div>
+    </div>
+    <div class="iaa-hero-visual">
+      <div class="iaa-video-frame">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="/assets/repository/videos/iaa.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </header>
+
+  <div class="iaa-marquee-strip">
+    <div class="logo-track-wrapper">
+      <div class="logo-track">
+        {% for partner in partners %}
+        <div class="logo-item"><img src="/assets/repository/images/clients/{{ partner.file }}" alt="{{ partner.alt }}" loading="lazy"></div>
+        {% endfor %}
+        {% for partner in partners %}
+        <div class="logo-item"><img src="/assets/repository/images/clients/{{ partner.file }}" alt="{{ partner.alt }}" loading="lazy"></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <section class="iaa-editorial-section" id="capabilities">
+    <div class="iaa-container">
+      <div class="iaa-section-intro">
+        <span class="iaa-superhead">Methodology</span>
+        <h2 class="iaa-section-title">The Alliance advantage</h2>
+        <p class="iaa-section-desc">We combine boutique consultancy responsiveness with the comprehensive capabilities of a vetted partner network spanning legal, financial, operational, and strategic domains.</p>
+      </div>
+
+      <div class="iaa-grid-3">
+        <div class="iaa-grid-item">
+          <h3 class="iaa-item-title">Agile</h3>
+          <p class="iaa-item-text">Direct access to senior strategists who understand your sector and timeline constraints.</p>
+        </div>
+        <div class="iaa-grid-item">
+          <h3 class="iaa-item-title">Connected</h3>
+          <p class="iaa-item-text">Immediate access to decision-makers across Commonwealth and state jurisdictions.</p>
+        </div>
+        <div class="iaa-grid-item">
+          <h3 class="iaa-item-title">Comprehensive</h3>
+          <p class="iaa-item-text">Full-spectrum capability through our alliance of sector leaders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iaa-editorial-section">
+    <div class="iaa-container">
+      <span class="iaa-superhead">The Network</span>
+      <h2 class="iaa-section-title">Alliance Index</h2>
+      <div class="iaa-index-wrapper">
+        {% for partner in iaaPartners %}
+        <div class="iaa-index-row">
+          <div class="iaa-index-cat">{{ partner.category }}</div>
+          <div class="iaa-index-name">{{ partner.name }}</div>
+          <div class="iaa-index-desc">{{ partner.desc }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="iaa-editorial-cta">
+    <div class="iaa-cta-box">
+      <h2 class="iaa-display-title" style="font-size:2.25rem;">Ready to explore the market?</h2>
+      <p class="iaa-lead-text" style="max-widt      <p class="iaa-lead-tex;">Contact the Alliance to discuss your strategic objectives.</p>
+      <a href="/contact/" class="btn-iaa-primary">Initiate Contact</a>
+    </div>
+  </section>
+</main>
