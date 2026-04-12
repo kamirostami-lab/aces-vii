@@ -56,19 +56,22 @@ permalink: /alliance/members/index.html
     </div>
   </section>
 
-  <section class="iaa-editorial-section">
-    <div class="iaa-container">
-      <h2 class="iaa-section-title">Partner Directory</h2>
+<section class="iaa-editorial-section">
+  <div class="iaa-container">
+    <span class="iaa-superhead" data-iaa-reveal>The Network</span>
+    <h2 class="iaa-section-title" data-iaa-reveal>Alliance Index</h2>
 
-      <div class="iaa-index-wrapper">
-        {% for partner in iaaPartners %}
-        <div class="iaa-index-row">
-          <div class="iaa-index-cat">{{ partner.category }}</div>
-          <div class="iaa-index-name">{{ partner.name }}</div>
-          <div class="iaa-index-desc">{{ partner.desc }}</div>
-        </div>
-        {% endfor %}
+    <div class="iaa-index-wrapper">
+      {% for partner in iaaPartners %}
+      <div class="iaa-index-row">
+        <div class="iaa-index-cat">{{ partner.category }}</div>
+        <div class="iaa-index-name">{{ partner.name }}</div>
+        <div class="iaa-index-desc">{{ partner.desc }}</div>
       </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
       <div class="member-contact-note">
         <p>For direct partner introductions, contact <a href="mailto:alliance@acestrategies.au">alliance@acestrategies.au</a></p>
