@@ -1,8 +1,9 @@
 ---
 layout: base.njk
 title: Contact
-description: Contact Ace Strategies to discuss your government relations, stakeholder engagement, strategic communications, media management or market entry and growth needs.
+description: Contact Ace Strategies to discuss your government relations, stakeholder engagement, strategic communications, media management or market entry needs.
 active_nav: /contact/
+permalink: /contact/index.html
 ---
 
 <section class="hero hero--page" data-theme="dark">
@@ -13,7 +14,7 @@ active_nav: /contact/
   </div>
   <div class="hero-content" style="max-width:700px;">
     <h1 class="hero-title">Start the Conversation</h1>
-    <p class="hero-subtitle">We welcome the opportunity to discuss your government relations, stakeholder engagement, strategic communications, media management or market entry and growth needs.</p>
+    <p class="hero-subtitle">We welcome the opportunity to discuss your needs.</p>
   </div>
 </section>
 
@@ -22,62 +23,28 @@ active_nav: /contact/
     <div class="contact-info-panel">
       <h2 class="contact-heading">Head Office</h2>
       <div class="contact-divider"></div>
-
       <div class="contact-detail-row">
         <span class="material-symbols-outlined icon-gold">location_on</span>
         <div><span class="detail-label">Address</span><p class="detail-text">{{ site.address | replace(', ', '<br>') | safe }}</p></div>
       </div>
-
       <div class="contact-detail-row">
         <span class="material-symbols-outlined icon-gold">call</span>
         <div><span class="detail-label">Phone</span><a href="tel:{{ site.phone | replace(' ', '') }}" class="detail-link">{{ site.phone }}</a></div>
       </div>
-
       <div class="contact-detail-row">
         <span class="material-symbols-outlined icon-gold">mail</span>
         <div><span class="detail-label">Email</span><a href="mailto:{{ site.email }}" class="detail-link">{{ site.email }}</a></div>
       </div>
-
-      <div class="contact-detail-row">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="icon-gold" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
-        <div><span class="detail-label">LinkedIn</span><a href="{{ site.linkedin }}" target="_blank" rel="noopener noreferrer" class="detail-link">Follow our updates</a></div>
-      </div>
     </div>
-
     <div class="contact-form-panel">
       <h3 class="form-heading">Send a Message</h3>
-      <form action="/api/contact" method="POST" class="ace-premium-form">
+      <form action="#" method="POST" class="ace-premium-form">
         <div class="form-row">
-          <div class="premium-input-group">
-            <input type="text" id="name" name="name" class="premium-input" placeholder=" " required>
-            <label for="name" class="premium-label">Full Name</label>
-            <div class="input-highlight"></div>
-          </div>
-          <div class="premium-input-group">
-            <input type="email" id="email" name="email" class="premium-input" placeholder=" " required>
-            <label for="email" class="premium-label">Email Address</label>
-            <div class="input-highlight"></div>
-          </div>
+          <div class="premium-input-group"><input type="text" class="premium-input" placeholder=" " required><label class="premium-label">Full Name</label></div>
+          <div class="premium-input-group"><input type="email" class="premium-input" placeholder=" " required><label class="premium-label">Email Address</label></div>
         </div>
-        <div class="premium-input-group">
-          <input type="tel" id="phone" name="phone" class="premium-input" placeholder=" ">
-          <label for="phone" class="premium-label">Phone Number</label>
-          <div class="input-highlight"></div>
-        </div>
-        <div class="premium-input-group">
-          <textarea id="message" name="message" class="premium-input" rows="4" placeholder=" " required></textarea>
-          <label for="message" class="premium-label">How can we help?</label>
-          <div class="input-highlight"></div>
-        </div>
-        <label class="premium-checkbox">
-          <input type="checkbox" name="subscribe">
-          <span class="checkmark"></span>
-          <span class="checkbox-text">Subscribe to Ace Strategies insights and updates.</span>
-        </label>
-        <button type="submit" class="premium-submit-btn">
-          <span>Send Message</span>
-          <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
+        <div class="premium-input-group"><textarea class="premium-input" rows="4" placeholder=" " required></textarea><label class="premium-label">How can we help?</label></div>
+        <button type="submit" class="premium-submit-btn"><span>Send Message</span><span class="material-symbols-outlined">arrow_forward</span></button>
       </form>
     </div>
   </div>

@@ -3,6 +3,7 @@ layout: base.njk
 title: Case Studies
 description: Proven results for clients across government relations, stakeholder engagement, and strategic communications.
 active_nav: /cases/
+permalink: /cases/index.html
 ---
 
 <section class="cases-hero" data-theme="dark">
@@ -16,23 +17,14 @@ active_nav: /cases/
   <div class="case-studies-grid">
     {% for item in cases %}
     <div class="case-study-card">
-      <div class="case-media">
-        <img src="{{ item.image }}" alt="{{ item.image_alt }}">
-      </div>
+      <div class="case-media"><img src="{{ item.image }}" alt="{{ item.image_alt }}"></div>
       <div class="case-content">
         <span class="case-category">{{ item.category }}</span>
         <h3 class="case-client">{{ item.client }}</h3>
         <h4 class="case-title">{{ item.title }}</h4>
-        <div class="case-body">
-          {% for para in item.body_paragraphs %}
-          <p>{{ para }}</p>
-          {% endfor %}
-        </div>
+        <div class="case-body">{% for para in item.body_paragraphs %}<p>{{ para }}</p>{% endfor %}</div>
         {% if item.has_quote %}
-        <div class="case-quote-box">
-          <p class="case-quote">"{{ item.quote }}"</p>
-          <p class="case-author">{{ item.quote_author }}</p>
-        </div>
+        <div class="case-quote-box"><p class="case-quote">"{{ item.quote }}"</p><p class="case-author">{{ item.quote_author }}</p></div>
         {% endif %}
       </div>
     </div>

@@ -3,6 +3,7 @@ layout: base.njk
 title: News & Insights
 description: Latest polling data, strategic analysis, and corporate announcements from Ace Strategies.
 active_nav: /news/
+permalink: /news/index.html
 ---
 
 <section class="news-hero" data-theme="dark">
@@ -18,65 +19,12 @@ active_nav: /news/
     <h2 class="section-title">South Australia: The Political Pulse</h2>
     <div class="section-divider"></div>
   </div>
-
   <div class="poll-vis-container">
-    <div class="poll-header-row">
-      <span>Two-Party Preferred (TPP)</span>
-      <span>Source: DemosAU / Ace Strategies</span>
-    </div>
+    <div class="poll-header-row"><span>Two-Party Preferred</span><span>Source: DemosAU / Ace Strategies</span></div>
     <div class="poll-bar-track">
       <div class="poll-bar-segment segment-labor" style="width: {{ polling.south_australia.labor_tpp }}%;">ALP {{ polling.south_australia.labor_tpp }}%</div>
       <div class="poll-bar-segment segment-liberal" style="width: {{ polling.south_australia.liberal_tpp }}%;">LIB {{ polling.south_australia.liberal_tpp }}%</div>
     </div>
-    <div class="poll-meta">
-      <span>Labor Government</span>
-      <span>Liberal Opposition</span>
-    </div>
-    <div class="poll-context">
-      <div class="poll-text">
-        <h3>Soaring Labor vote pushes Liberals to the edge</h3>
-        <p>South Australian Labor is surging towards a potential landslide victory with the latest DemosAU/Ace Strategies Poll showing the party leading the Liberals {{ polling.south_australia.labor_tpp }}&ndash;{{ polling.south_australia.liberal_tpp }} per cent.</p>
-      </div>
-      <div class="poll-stats-col">
-        <h4>Primary Vote Breakdown</h4>
-        <div class="poll-stat-grid">
-          <div class="stat-box"><span class="stat-num" style="color:#F4364C;">{{ polling.south_australia.labor_primary }}%</span><span class="stat-label">Labor</span></div>
-          <div class="stat-box"><span class="stat-num" style="color:#4A89C1;">{{ polling.south_australia.liberal_primary }}%</span><span class="stat-label">Liberal</span></div>
-          <div class="stat-box"><span class="stat-num" style="color:#009944;">{{ polling.south_australia.greens_primary }}%</span><span class="stat-label">Greens</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="news-grid-section" data-theme="light">
-  <div class="section-header">
-    <span class="section-label">Latest Updates</span>
-    <h2 class="section-title">News & Announcements</h2>
-    <div class="section-divider"></div>
-  </div>
-  <div class="news-grid">
-    {% for item in news %}
-    <article class="news-item">
-      <img src="{{ item.image }}" alt="{{ item.image_alt }}" class="news-item-img">
-      <div class="news-item-body">
-        <div class="news-date">{{ item.date | dateFormat("long") }}</div>
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.excerpt }}</p>
-        <details>
-          <summary>Read full release</summary>
-          <div class="expanded-content">
-            {% for para in item.body_paragraphs %}
-            <p>{{ para }}</p>
-            {% endfor %}
-            {% if item.pdf_url %}
-            <a href="{{ item.pdf_url }}">{{ item.pdf_label or 'Download PDF' }}</a>
-            {% endif %}
-          </div>
-        </details>
-      </div>
-    </article>
-    {% endfor %}
   </div>
 </section>
 
