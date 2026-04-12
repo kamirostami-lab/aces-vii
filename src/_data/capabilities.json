@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Government Relations",
+    "body": "We provide effective engagement with government decision-makers, influencers and bureaucrats at local, state and federal levels, advocating for your interests and navigating regulatory frameworks.",
+    "image": "/assets/repository/images/ui/background/sa-parliament-house.jpg",
+    "image_alt": "Government Relations",
+    "url": "/services/public-affairs/",
+    "card_class": "card-wide"
+  },
+  {
+    "title": "Stakeholder Engagement",
+    "body": "We design and implement stakeholder engagement frameworks that build meaningful relationships with communities, customers, and key influencers to earn and maintain your social licence to operate.",
+    "image": "/assets/repository/images/ui/background/aces-media-3.png",
+    "image_alt": "Stakeholder Engagement",
+    "url": "/services/stakeholder-engagement/",
+    "card_class": "card-square"
+  },
+  {
+    "title": "Strategic Communications",
+    "body": "We develop and execute strategic communications plans aligned with your organisational objectives, from ESG reporting and corporate messaging to crisis management and integrated campaigns.",
+    "image": "/assets/repository/images/ui/background/aces-comms.png",
+    "image_alt": "Strategic Communications",
+    "url": "/services/strategic-communications/",
+    "card_class": "card-narrow"
+  },
+  {
+    "title": "Media Management",
+    "body": "We help organisations navigate the media landscape, proactively manage issues, and build constructive relationships. Our media strategies protect and enhance your public profile and reputation.",
+    "image": "/assets/repository/images/ui/background/aces-colours-microphone.png",
+    "image_alt": "Media Management",
+    "url": "/services/media-management/",
+    "card_class": "card-wide"
+  },
+  {
+    "title": "Research and Polling",
+    "body": "Partnering with DemosAU, we deliver comprehensive research solutions that combine specialist local knowledge with high-level polling expertise.",
+    "image": "/assets/repository/images/clients/img-logo-demosau.png",
+    "image_alt": "DemosAU",
+    "url": "/services/polling/",
+    "card_class": "card-square"
+  },
+  {
+    "title": "Market Entry & Growth",
+    "body": "Leveraging our deep local knowledge and the Invest Australia Alliance network, we provide strategic counsel and practical support for organisations entering the Australian market or expanding nationally.",
+    "image": "/assets/repository/images/ui/background/new-market-1.png",
+    "image_alt": "Market Entry",
+    "url": "/services/new-market-entry/",
+    "card_class": "card-square"
+  }
+]

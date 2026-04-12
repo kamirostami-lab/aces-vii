@@ -1,0 +1,10 @@
+{% macro testimonialCard(item) %}
+<div class="testimonial-card">
+  <div class="quote-icon">&ldquo;</div>
+  <blockquote class="testimonial-quote">{{ item.quote }}</blockquote>
+  <div class="testimonial-author">
+    <cite class="author-name">{{ item.author }}</cite>
+    <span class="author-role">{{ item.role }}</span>
+  </div>
+</div>
+{% endmacro %}

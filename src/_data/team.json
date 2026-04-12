@@ -1,0 +1,63 @@
+[
+  {
+    "id": "matt-neagle",
+    "name": "Matt Neagle",
+    "role": "Managing Director",
+    "image_index": "/assets/repository/images/team/temp/-temimg-teams-two-matt.png",
+    "image_profile": "/assets/repository/images/team/temp/img-team-three-matt--.png",
+    "image_alt_index": "Matt Neagle — Managing Director, Ace Strategies",
+    "image_alt_profile": "Matt Neagle — Managing Director, Ace Strategies",
+    "bio_short": "Founder and Managing Director. Strategic communications and government relations specialist.",
+    "bio_paragraphs": [
+      "Matt Neagle is the Founder and Managing Director of Ace Strategies. He brings extensive expertise in government relations, strategic communications, and media management to provide clients with actionable, strategic counsel.",
+      "With a career spanning journalism, political advisory roles, and corporate strategy, Matt possesses a unique ability to translate complex requirements into compelling narratives that resonate with government and community stakeholders.",
+      "Prior to establishing Ace Strategies, Matt served as a senior adviser to government ministers and held key strategic roles in major national projects. His deep understanding of the Australian political landscape enables him to provide clients with informed and impactful advice.",
+      "Matt is a founding member of the Invest Australia Alliance, a network dedicated to facilitating international investment and market entry into Australia."
+    ]
+  },
+  {
+    "id": "kevin-naughton",
+    "name": "Kevin Naughton",
+    "role": "Strategic Counsel",
+    "image_index": "/assets/repository/images/team/temp/img-team-three-kevin--.png",
+    "image_profile": "/assets/repository/images/team/temp/img-team-three-kevin--.png",
+    "image_alt_index": "Kevin Naughton — Strategic Counsel, Ace Strategies",
+    "image_alt_profile": "Kevin Naughton — Strategic Counsel, Ace Strategies",
+    "bio_short": "Award-winning journalist and renowned strategist for political and industry leaders.",
+    "bio_paragraphs": [
+      "An award-winning journalist, Kevin has led newsrooms and government offices throughout Australia and is a renowned strategist for political and industry leaders. For decades, Kevin has navigated the intersection of government relations, media influence, and strategic communications.",
+      "Kevin has served as a senior media adviser to Premiers and Ministers, navigating some of the state's most significant policy challenges. His calm, evidence-based approach to issues management has made him a trusted confidant to CEOs and boards across the country.",
+      "At Ace Strategies, Kevin specialises in media training, issues management, and high-level government advocacy. His vast network in media and government ensures that clients are heard by the right people at the right time."
+    ]
+  },
+  {
+    "id": "guy-boekenstein",
+    "name": "Guy Boekenstein",
+    "role": "Strategic Counsel",
+    "image_index": "/assets/repository/images/team/temp/img-team-three-guy--.png",
+    "image_profile": "/assets/repository/images/team/temp/img-team-three-guy--.png",
+    "image_alt_index": "Guy Boekenstein — Strategic Counsel, Ace Strategies",
+    "image_alt_profile": "Guy Boekenstein — Strategic Counsel, Ace Strategies",
+    "bio_short": "Experienced defence and national security professional with deep Indo-Pacific networks.",
+    "bio_paragraphs": [
+      "Guy is an experienced defence and national security professional with a deep knowledge of the Indo-Pacific region and extensive Asia networks. He has worked in government and the business sector in senior advisory and executive roles.",
+      "A former senior adviser to Australia's Minister for Defence and to the Secretary of the Department of Home Affairs, Guy has built practical relationships between Australia and countries including India, Indonesia, Japan, South Korea, Timor-Leste, Vietnam and Pacific Island nations.",
+      "Based in Sydney, Guy's strategic foresight helps clients anticipate policy shifts and adapt their strategies for success in an evolving Indo-Pacific environment."
+    ]
+  },
+  {
+    "id": "mel-jones",
+    "name": "Mel Jones",
+    "role": "Director",
+    "image_index": "/assets/repository/images/team/temp/img-team-three-mel.png--",
+    "image_profile": "/assets/repository/images/team/temp/img-team-three-mel.png--",
+    "image_alt_index": "Mel Jones — Director, Ace Strategies",
+    "image_alt_profile": "Mel Jones — Director, Ace Strategies",
+    "bio_short": "Dynamic leader with strong background in government relations and policy development.",
+    "bio_paragraphs": [
+      "Mel Jones is a dynamic leader with a strong background in government relations, stakeholder engagement and policy development. As Director, Mel oversees the operational excellence of Ace Strategies while driving key client accounts in the health and social policy sectors.",
+      "With decades of experience on the front line of public policy development, stakeholder engagement and political strategy, Mel brings rigorous analytical depth to engagement planning and issues management.",
+      "She has successfully led major community consultation programs for infrastructure projects, ensuring social licence is earned and maintained. Mel is passionate about fostering inclusive approaches and champions these values in her client work."
+    ]
+  }
+]

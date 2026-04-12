@@ -1,0 +1,204 @@
+---
+layout: base.njk
+title: Navigate the Complex World
+description: Ace Strategies provides expert strategic communications, government relations, and stakeholder engagement. Based in Adelaide, South Australia.
+canonical: https://acestrategies.au/
+active_nav: /
+body_class: home-page
+---
+
+<section class="hero hero--home" data-theme="dark">
+  <div class="hero-media">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="/assets/repository/images/ui/background/hero-poster.jpg">
+      <source src="/assets/repository/videos/homepage-bq.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="word"><span><em>Navigate</em></span></span>
+      <span class="word"><span>the</span></span>
+      <span class="word"><span><em>complex</em></span></span>
+      <span class="word"><span>world.</span></span>
+    </h1>
+    <p class="hero-subtitle">Ace Strategies provides expert guidance to help your organisation succeed. Based in Adelaide, South Austra    <p class="hero-subtitle">Acd strategic communications, government relations, and stakeholder engagement.</p>
+    <div class="hero-cta-wrapper">
+      <a href="/contact/" class="hero-cta-circle"><span>Start the<br>Conversation<br>today</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="services-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Strategic Capabilities</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="carousel-container-outer">
+    <button class="carousel-nav-btn prev-btn" id="cap-prev" aria-label="Previous capability">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <div class="carousel-wrapper">
+      <div class="services-carousel-track" id="capabilities-carousel">
+        {% for item in capabilities %}
+        <div class="service-bg-card {{ item.card_class }}">
+          <img src="{{ item.image }}" alt="{{ item.image_alt }}" class="service-img" loading="lazy">
+          <div class="service-card-content">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+            <a href="{{ item.url }}" class="service-link-btn">Learn more</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="carousel-nav-btn next-btn" id="cap-next" aria-label="Next capability">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+  </div>
+  <div class="carousel-dots" id="cap-dots"></div>
+</section>
+
+<section class="logo-section" data-theme="light">
+  <div class="section-header" style="margin-bottom:32px;">
+    <span class="section-label">Trusted By</span>
+  </div>
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+      {% for item in clients %}
+      <div class="logo-item"><img src="/assets/repository/images/clients/{{ item.file }}" alt="{{ item.alt }}" loading="lazy"></div>
+      {% endfor %}
+      {% for item in clients %}
+      <div class="logo-item"><img src="/assets/repository/images/clients/{{ item.file }}" alt="{{ item.alt }}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Client Perspectives</span>
+    <h2 class="section-title">Partners in Impact</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="carousel-container-outer">
+    <button class="carousel-nav-btn prev-btn" id="test-prev" aria-label="Previous testimonial">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <div class="testimonials-carousel-wrapper">
+      <div class="testimonials-track" id="testimonials-carousel">
+        {% for item in testimonials %}
+        <div class="testimonial-card">
+          <div class="quote-icon">&ldquo;</div>
+          <blockquote class="testimonial-quote">{{ item.quote }}</blockquote>
+          <div class="testimonial-author">
+            <cite class="author-name">{{ item.author }}</cite>
+            <span class="author-role">{{ item.role }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="carousel-nav-btn next-btn" id="test-next" aria-label="Next testimonial">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+  </div>
+  <div class="carousel-dots" id="test-dots"></div>
+</section>
+
+<section class="team-teaser-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Leadership</span>
+    <h2 class="section-title">Meet the Ace Team</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="team-grid">
+    {% for member in team %}
+    <div class="team-card">
+      <div class="team-card-inner">
+        <div class="team-card-front">
+          <img src="{{ member.image_index }}" alt="{{ member.name }}">
+          <div class="team-info-overlay">
+            <h3 class="team-name">{{ member.name }}</h3>
+            <div class="team-role">{{ member.role }}</div>
+          </div>
+        </div>
+        <div class="team-card-back">
+          <p class="team-bio">{{ member.bio_short }}</p>
+          <a href="/team/#{{ member.id }}" class="team-social-btn">Read more</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="news-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Latest Insights</span>
+    <h2 class="section-title">News &amp; Analysis</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="carousel-container-outer">
+    <button class="carousel-nav-btn prev-btn" id="news-prev" aria-label="Previous news item">
+      <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <div class="news-carousel-wrapper">
+      <div class="news-carousel-track" id="news-carousel">
+        <div class="news-text-card">
+          <div class="news-date">Nov 3, 2025</div>
+          <h3 class="news-card-title">Political Stalwart Joins Ace Strategies</h3>
+          <p class="news-snippet">A former Senior Adviser to South Australian Premier Peter Malinauskas has been appointed as Strategic Counsel.</p>
+          <a href="/news/" class="news-read-link">Read announcement</a>
+        </div>
+        <div class="news-text-card">
+          <div class="news-date">Oct 17, 2025</div>
+          <h3 class="news-card-title">Political Powerhouse Appointed Director</h3>
+          <p class="news-snippet">Former Senior Adviser to State Government Treasurer Stephen Mullighan joins Ace Strategies as a Director.</p>
+          <a href="/news/" class="news-read-link">Read announcement</a>
+        </div>
+        <div class="news-text-card">
+          <div class="news-date">Oct 20, 2025</div>
+          <h3 class="news-card-title">SA Poll: Soaring Labor vote pushes Liberals to the edge</h3>
+          <p class="news-snippet">The latest DemosAU/Ace Strategies Poll shows Labor leading the Liberals 66-34 per cent.</p>
+          <a href="/news/" class="news-read-link">Read analysis</a>
+        </div>
+        <div class="news-text-card">
+          <div class="news-date">Dec 1, 2025</div>
+          <h3 class="news-card-title">DemosAU Federal MRP Report</h3>
+          <p class="news-snippet">A comprehensive Multi-Level Regression with Poststratification model analysis.</p>
+          <a href="/news/" class="news-read-link">Download report</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-nav-btn next-btn" id="news-next" aria-label="Next news item">
+      <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+  </div>
+  <div class="carousel-dots" id="news-dots"></div>
+</section>
+
+<section class="membership-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Professional Affiliations</span>
+    <h2 class="section-title">Industry Leadership</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+      {% for item in affiliations %}
+      <div class="logo-item"><img src="/assets/repository/images/clients/{{ item.file }}" alt="{{ item.alt }}" loading="lazy"></div>
+      {% endfor %}
+      {% for item in affiliations %}
+      <div class="logo-item"><img src="/assets/repository/images/clients/{{ item.file }}" alt="{{ item.alt }}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" data-theme="dark">
+  <div class="cta-content">
+    <h2 class="cta-title">Ready to achieve <span class="highlight">clarity and impact?</span></h2>
+    <p class="cta-sub">Partner with Ace Strategies.</p>
+    <a href="/contact/" class="cta-button">Contact us today</a>
+  </div>
+</section>

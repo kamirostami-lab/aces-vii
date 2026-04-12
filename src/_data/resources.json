@@ -1,0 +1,29 @@
+[
+  {
+    "icon": "poll",
+    "meta": "Federal Polling",
+    "title": "DemosAU Federal MRP Report (Oct/Nov 2025)",
+    "desc": "A comprehensive Multi-Level Regression with Poststratification model projecting seat-by-seat outcomes across Australia.",
+    "file_url": "/assets/repository/documents/news-and-insights/reads/01122025-DemosAU-OctNov-Federal-MRP-Report.pdf",
+    "file_type": "pdf",
+    "file_label": "Download PDF"
+  },
+  {
+    "icon": "security",
+    "meta": "",
+    "title": "Into Gear: Defence Industrial Cooperation",
+    "desc": "United States Studies Centre paper co-authored by Guy Boekenstein. An analysis of industrial and technology cooperation between Australia, Japan, and the United States.",
+    "file_url": "/assets/repository/documents/news-and-insights/reads/00122025-Dec-USSC paper-Into-Gear-Boekenstein coauthor.pdf",
+    "file_type": "pdf",
+    "file_label": "Download PDF"
+  },
+  {
+    "icon": "handshake",
+    "meta": "Partnership Announcement",
+    "title": "Polling Every State, Every Quarter",
+    "desc": "Ace Strategies partners with DemosAU to provide objective, timely, and reliable insights into voter sentiment as a member of the Australian Polling Council.",
+    "file_url": "/assets/repository/documents/news-and-insights/reads/DemosAU-State-Polling-Article.docx",
+    "file_type": "docx",
+    "file_label": "Read Statement"
+  }
+]
