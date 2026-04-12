@@ -4271,39 +4271,177 @@ body.theme-light .logo img {
   filter: brightness(0.2);
 }
 
-/* Footer */
+/* =========================================
+   LIGHT MODE FOOTER — COMPLETE VISIBILITY FIX
+   ========================================= */
+
 body.theme-light .site-footer {
   background: #f5f5f5 !important;
   color: var(--navy) !important;
   border-top: 1px solid rgba(26, 43, 69, 0.1);
 }
 
+/* All headings in footer */
 body.theme-light .site-footer h3 {
   color: var(--navy) !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 1;
 }
 
+/* All links in footer */
 body.theme-light .site-footer a {
-  color: rgba(26, 43, 69, 0.75) !important;
+  color: rgba(26, 43, 69, 0.8) !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 body.theme-light .site-footer a:hover {
   color: var(--sky-blue) !important;
+  opacity: 1;
 }
 
+/* Strong/emphasized links (like "Invest Australia Alliance") */
+body.theme-light .site-footer a strong,
+body.theme-light .site-footer strong a {
+  color: var(--navy) !important;
+  font-weight: 700;
+}
+
+/* Footer brand name */
+body.theme-light .footer-brand-name {
+  color: var(--navy) !important;
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* ABN text */
+body.theme-light .footer-abn {
+  color: rgba(26, 43, 69, 0.6) !important;
+  opacity: 1;
+}
+
+/* Acknowledgement of country */
+body.theme-light .footer-acknowledgement p {
+  color: rgba(26, 43, 69, 0.7) !important;
+  font-family: var(--font-serif);
+  font-style: italic;
+  line-height: 1.7;
+  opacity: 1;
+}
+
+/* Footer bottom section */
 body.theme-light .footer-bottom {
-  border-top-color: rgba(26, 43, 69, 0.1) !important;
+  border-top-color: rgba(26, 43, 69, 0.15) !important;
 }
 
 body.theme-light .footer-bottom p {
-  color: rgba(26, 43, 69, 0.6) !important;
+  color: rgba(26, 43, 69, 0.65) !important;
+  opacity: 1;
 }
 
 body.theme-light .footer-bottom-links a {
-  color: rgba(26, 43, 69, 0.5) !important;
+  color: rgba(26, 43, 69, 0.6) !important;
+  opacity: 1;
+}
+
+body.theme-light .footer-bottom-links a:hover {
+  color: var(--sky-blue) !important;
+  opacity: 1;
+}
+
+/* Contact items */
+body.theme-light .footer-contact-item {
+  color: var(--navy) !important;
+}
+
+body.theme-light .footer-contact-item p {
+  color: rgba(26, 43, 69, 0.85) !important;
+  opacity: 1;
+}
+
+body.theme-light .footer-contact-item a {
+  color: rgba(26, 43, 69, 0.85) !important;
 }
 
 body.theme-light .footer-contact-item .material-symbols-outlined {
   color: var(--gold) !important;
+  opacity: 1;
+}
+
+/* Alliance block */
+body.theme-light .footer-alliance-block {
+  border-top-color: rgba(26, 43, 69, 0.15) !important;
+}
+
+body.theme-light .footer-alliance-label {
+  color: var(--gold) !important;
+  opacity: 1;
+}
+
+/* LinkedIn button in footer */
+body.theme-light .footer-linkedin-btn {
+  background: rgba(26, 43, 69, 0.05) !important;
+  border-color: rgba(26, 43, 69, 0.2) !important;
+  color: var(--navy) !important;
+}
+
+body.theme-light .footer-linkedin-btn:hover {
+  background: var(--sky-blue) !important;
+  border-color: var(--sky-blue) !important;
+  color: var(--white) !important;
+}
+
+body.theme-light .footer-linkedin-btn svg {
+  color: var(--sky-blue) !important;
+}
+
+body.theme-light .footer-linkedin-btn:hover svg {
+  color: var(--white) !important;
+}
+
+/* Material symbols in footer */
+body.theme-light .site-footer .material-symbols-outlined {
+  color: var(--gold) !important;
+  opacity: 1;
+}
+
+/* Footer logo */
+body.theme-light .footer-logo {
+  filter: brightness(0.3);
+}
+
+/* Alliance footer logo */
+body.theme-light .alliance-footer-logo {
+  filter: brightness(0.2);
+}
+
+/* Theme toggle labels in footer */
+body.theme-light .theme-toggle__label {
+  color: var(--navy) !important;
+  opacity: 0.8;
+}
+
+body.theme-light .theme-toggle:hover .theme-toggle__label {
+  opacity: 1;
+}
+
+/* Footer section paragraphs */
+body.theme-light .footer-section p {
+  color: rgba(26, 43, 69, 0.8) !important;
+  opacity: 1;
+}
+
+/* Any remaining text */
+body.theme-light .site-footer * {
+  text-shadow: none;
+}
+
+/* Ensure proper contrast for all footer text */
+body.theme-light .site-footer .footer-section,
+body.theme-light .site-footer .footer-content,
+body.theme-light .site-footer .footer-grid {
+  color: var(--navy) !important;
 }
 
 /* Sections with light background become slightly darker in light mode */
@@ -4780,4 +4918,478 @@ body.theme-light .footer-bottom {
   .theme-toggle-wrapper {
     justify-content: center;
   }
+}
+
+/* ==========================================================================
+   45. IAA ALLIANCE PAGE — LIGHT/DARK MODE
+   ========================================================================== */
+
+/* =========================================
+   DARK MODE — Default (Already Stunning)
+   ========================================= */
+
+/* Default IAA variables are already set for dark mode:
+   --iaa-navy: #101828
+   --iaa-bg: #F4F5F6 (wait, this is light!)
+   --iaa-silver: #D0D3DB
+   --iaa-gold-light: #F5E4C0
+   --iaa-text: #101828
+   --iaa-border: rgba(16, 24, 40, 0.12)
+   --iaa-gold-dark: #B59A5A
+   --iaa-red: #DA1966
+*/
+
+/* Override IAA variables for TRUE dark mode */
+body.iaa-page {
+  --iaa-navy: #0a0f1a;
+  --iaa-bg: #0d1117;
+  --iaa-silver: #1a2332;
+  --iaa-gold-light: #2a2a2a;
+  --iaa-text: #ffffff;
+  --iaa-border: rgba(255, 255, 255, 0.1);
+  --iaa-gold-dark: #C9A961;
+  --iaa-red: #ff3366;
+  background-color: var(--iaa-bg);
+  color: var(--iaa-text);
+}
+
+/* Dark mode specific overrides */
+body.iaa-page .iaa-hero-editorial {
+  background: transparent;
+}
+
+body.iaa-page .iaa-display-title {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-section-title {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-lead-text {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.iaa-page .iaa-item-title {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-item-text {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+body.iaa-page .iaa-section-desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Alliance Index rows */
+body.iaa-page .iaa-index-row {
+  border-bottom-color: var(--iaa-border);
+}
+
+body.iaa-page .iaa-index-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body.iaa-page .iaa-index-cat {
+  color: var(--iaa-gold-dark);
+}
+
+body.iaa-page .iaa-index-name {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-index-desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Timeline */
+body.iaa-page .iaa-timeline-bg {
+  color: var(--iaa-text);
+  opacity: 0.04;
+}
+
+/* CTA Box */
+body.iaa-page .iaa-cta-box {
+  background: #1a2332;
+  border-color: var(--iaa-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Marquee strip */
+body.iaa-page .iaa-marquee-strip {
+  background: var(--iaa-bg);
+  border-top-color: var(--iaa-border);
+  border-bottom-color: var(--iaa-border);
+}
+
+/* Grid items */
+body.iaa-page .iaa-grid-item {
+  border-top-color: var(--iaa-border);
+}
+
+body.iaa-page .iaa-service-item {
+  border-top-color: var(--iaa-border);
+}
+
+/* Video frame */
+body.iaa-page .iaa-video-frame {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+body.iaa-page .btn-iaa-primary {
+  background-color: var(--iaa-gold-dark);
+  border-color: var(--iaa-gold-dark);
+  color: var(--iaa-navy);
+}
+
+body.iaa-page .btn-iaa-primary:hover {
+  background-color: transparent;
+  color: var(--iaa-gold-dark);
+}
+
+body.iaa-page .btn-iaa-text {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .btn-iaa-text:hover {
+  color: var(--iaa-red);
+  border-bottom-color: var(--iaa-red);
+}
+
+/* Navigation in dark mode */
+body.iaa-page .nav {
+  background-color: var(--iaa-silver) !important;
+  border-color: var(--iaa-border) !important;
+}
+
+body.iaa-page .nav-link {
+  color: var(--iaa-text) !important;
+}
+
+body.iaa-page .nav-link:hover {
+  color: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .nav-link.active::after {
+  background: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .nav-toggle span {
+  background: var(--iaa-text) !important;
+}
+
+body.iaa-page .logo img {
+  filter: brightness(1);
+}
+
+/* Scroll state navigation */
+body.iaa-page .nav.is-scrolling {
+  background-color: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .nav.is-scrolling .nav-link {
+  color: var(--iaa-navy) !important;
+}
+
+body.iaa-page .nav.is-scrolling .logo img {
+  filter: brightness(0.15) !important;
+}
+
+/* Footer in dark mode */
+body.iaa-page .site-footer {
+  background-color: #0a0f1a !important;
+  border-top-color: var(--iaa-border);
+  color: var(--iaa-text) !important;
+}
+
+body.iaa-page .site-footer h3 {
+  color: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .site-footer a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+body.iaa-page .site-footer a:hover {
+  color: var(--iaa-red) !important;
+}
+
+body.iaa-page .footer-ack {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.iaa-page .footer-bottom p {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.iaa-page .alliance-footer-logo {
+  filter: brightness(1);
+}
+
+body.iaa-page .material-symbols-outlined {
+  color: var(--iaa-gold-dark) !important;
+  opacity: 1;
+}
+
+
+/* =========================================
+   LIGHT MODE — Alliance Page
+   ========================================= */
+
+body.theme-light.iaa-page {
+  --iaa-navy: #101828;
+  --iaa-bg: #F4F5F6;
+  --iaa-silver: #D0D3DB;
+  --iaa-gold-light: #F5E4C0;
+  --iaa-text: #101828;
+  --iaa-border: rgba(16, 24, 40, 0.12);
+  --iaa-gold-dark: #B59A5A;
+  --iaa-red: #DA1966;
+  background-color: var(--iaa-bg);
+  color: var(--iaa-text);
+}
+
+/* Light mode overrides */
+body.theme-light.iaa-page .iaa-display-title {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-section-title {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-lead-text {
+  color: rgba(16, 24, 40, 0.85);
+}
+
+body.theme-light.iaa-page .iaa-item-title {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-item-text {
+  color: rgba(16, 24, 40, 0.8);
+}
+
+body.theme-light.iaa-page .iaa-section-desc {
+  color: rgba(16, 24, 40, 0.85);
+}
+
+/* Alliance Index rows */
+body.theme-light.iaa-page .iaa-index-row {
+  border-bottom-color: var(--iaa-border);
+}
+
+body.theme-light.iaa-page .iaa-index-row:hover {
+  background: rgba(16, 24, 40, 0.03);
+}
+
+body.theme-light.iaa-page .iaa-index-cat {
+  color: var(--iaa-gold-dark);
+}
+
+body.theme-light.iaa-page .iaa-index-name {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-index-desc {
+  color: rgba(16, 24, 40, 0.75);
+}
+
+/* Timeline */
+body.theme-light.iaa-page .iaa-timeline-bg {
+  color: var(--iaa-navy);
+  opacity: 0.04;
+}
+
+/* CTA Box */
+body.theme-light.iaa-page .iaa-cta-box {
+  background: #ffffff;
+  border-color: var(--iaa-border);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.04);
+}
+
+/* Marquee strip */
+body.theme-light.iaa-page .iaa-marquee-strip {
+  background: var(--iaa-bg);
+  border-top-color: var(--iaa-border);
+  border-bottom-color: var(--iaa-border);
+}
+
+/* Grid items */
+body.theme-light.iaa-page .iaa-grid-item {
+  border-top-color: var(--iaa-border);
+}
+
+body.theme-light.iaa-page .iaa-service-item {
+  border-top-color: var(--iaa-border);
+}
+
+/* Video frame */
+body.theme-light.iaa-page .iaa-video-frame {
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.08);
+}
+
+/* Buttons */
+body.theme-light.iaa-page .btn-iaa-primary {
+  background-color: var(--iaa-navy);
+  border-color: var(--iaa-navy);
+  color: #ffffff;
+}
+
+body.theme-light.iaa-page .btn-iaa-primary:hover {
+  background-color: transparent;
+  color: var(--iaa-navy);
+}
+
+body.theme-light.iaa-page .btn-iaa-text {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .btn-iaa-text:hover {
+  color: var(--iaa-red);
+  border-bottom-color: var(--iaa-red);
+}
+
+/* Navigation in light mode */
+body.theme-light.iaa-page .nav {
+  background-color: var(--iaa-silver) !important;
+  border-color: var(--iaa-border) !important;
+}
+
+body.theme-light.iaa-page .nav-link {
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .nav-link:hover {
+  color: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav-link.active::after {
+  background: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav-toggle span {
+  background: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .logo img {
+  filter: brightness(0.15);
+}
+
+/* Scroll state navigation */
+body.theme-light.iaa-page .nav.is-scrolling {
+  background-color: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav.is-scrolling .nav-link {
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .nav.is-scrolling .logo img {
+  filter: brightness(0.15) !important;
+}
+
+/* Footer in light mode */
+body.theme-light.iaa-page .site-footer {
+  background-color: var(--iaa-silver) !important;
+  border-top-color: var(--iaa-border);
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .site-footer h3 {
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .site-footer a {
+  color: rgba(16, 24, 40, 0.75) !important;
+}
+
+body.theme-light.iaa-page .site-footer a:hover {
+  color: var(--iaa-red) !important;
+}
+
+body.theme-light.iaa-page .footer-ack {
+  color: rgba(16, 24, 40, 0.75) !important;
+}
+
+body.theme-light.iaa-page .footer-bottom p {
+  color: rgba(16, 24, 40, 0.6) !important;
+}
+
+body.theme-light.iaa-page .alliance-footer-logo {
+  filter: brightness(0.15);
+}
+
+body.theme-light.iaa-page .material-symbols-outlined {
+  color: var(--iaa-navy) !important;
+  opacity: 0.6;
+}
+
+/* Superhead with red dot */
+body.theme-light.iaa-page .iaa-superhead {
+  color: var(--iaa-gold-dark);
+}
+
+body.theme-light.iaa-page .iaa-superhead::before {
+  background-color: var(--iaa-red);
+}
+
+/* Service numbers */
+body.theme-light.iaa-page .iaa-service-num {
+  color: var(--iaa-red);
+}
+
+/* Hover states */
+body.theme-light.iaa-page .nav:hover:not(.is-scrolling) {
+  background-color: var(--iaa-gold-light) !important;
+}
+
+
+/* =========================================
+   THEME TOGGLE ON ALLIANCE PAGE
+   ========================================= */
+
+/* Ensure toggle works on Alliance page */
+body.iaa-page .theme-toggle__track {
+  background: var(--iaa-navy);
+  border-color: var(--iaa-gold-dark);
+}
+
+body.theme-light.iaa-page .theme-toggle__track {
+  background: var(--iaa-gold-dark);
+  border-color: var(--iaa-navy);
+}
+
+body.iaa-page .theme-toggle__handle {
+  background: #ffffff;
+}
+
+body.theme-light.iaa-page .theme-toggle__handle {
+  background: var(--iaa-navy);
+}
+
+body.iaa-page .theme-toggle__label {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .theme-toggle__label {
+  color: var(--iaa-navy);
+}
+
+body.iaa-page .theme-toggle__icon--moon {
+  color: var(--iaa-navy);
+}
+
+body.iaa-page .theme-toggle__icon--sun {
+  color: #ffffff;
+}
+
+body.theme-light.iaa-page .theme-toggle__icon--moon {
+  color: var(--iaa-navy);
+}
+
+body.theme-light.iaa-page .theme-toggle__icon--sun {
+  color: #ffffff;
 }
