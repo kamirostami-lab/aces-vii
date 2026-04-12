@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="/assets/css/ace.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="iaa-page">
 
@@ -17,18 +19,45 @@
   <a href="/alliance/" class="logo"><img src="/assets/repository/images/ui/iaa.webp" alt="Invest Australia Alliance"></a>
   <ul class="nav-menu">
     <li><a href="/" class="nav-link">Ace Strategies</a></li>
-    <li><a href="/alliance/" class="nav-link active">Alliance</a></li>
+    <li><a href="/alliance/" class="nav-link {% if page.url == '/alliance/' %}active{% endif %}">Alliance</a></li>
     <li><a href="/contact/" class="nav-link">Contact</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 {{ content | safe }}
 
 <footer class="site-footer">
   <div class="footer-content">
-    <p>&copy; {% year %} Invest Australia Alliance</p>
+    <div class="footer-grid">
+      <div class="footer-section">
+        <img src="/assets/repository/images/ui/iaa.webp" alt="Invest Australia Alliance" class="alliance-footer-logo">
+        <p class="footer-brand-name">Invest Australia Alliance&trade;</p>
+        <p class="footer-ack">Connecting international industry with Australian opportunity.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Alliance Enquiries</h3>
+        <div class="footer-contact-item"><span class="material-symbols-outlined">mail</span><a href="mailto:alliance@acestrategies.au">alliance@acestrategies.au</a></div>
+      </div>
+      <div class="footer-section">
+        <p class="footer-ack">We acknowledge the Traditional Owners of the land on which we work and recognise their continued custodianship and connection to the land, waters and community.</p>
+        <div style="margin-top:24px;"><a href="/" class="iaa-footer-link">← Return to Ace Strategies</a></div>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <a href="/legal/code-of-conduct/" class="iaa-footer-link" style="display:block;margin-bottom:8px;">Code of Conduct</a>
+        <a href="/legal/privacy/" class="iaa-footer-link" style="display:block;margin-bottom:8px;">Privacy Policy</a>
+        <a href="/legal/terms/" class="iaa-footer-link" style="display:block;">Terms of Use</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {% year %} Invest Australia Alliance. All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
+<script src="/assets/js/script.js" defer></script>
 </body>
 </html>
