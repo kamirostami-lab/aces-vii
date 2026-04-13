@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: Newsletter Archive
+description: Past editions of the Ace Strategies monthly newsletter.
+active_nav: /news/
+permalink: /newsletters/index.html
+---
+
+<section class="news-hero" data-theme="dark">
+  <div class="news-hero-content">
+    <h1 class="hero-title">Newsletter <span style="font-family:var(--font-serif);font-style:italic;color:var(--sky-blue);">Archive</span></h1>
+    <p class="hero-subtitle">Past editions of our monthly market intelligence briefing.</p>
+  </div>
+</section>
+
+<section class="newsletter-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Coming Soon</span>
+    <h2 class="section-title">Newsletter Archive</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div style="text-align: center; padding: 40px 20px 80px;">
+    <p style="font-size: 1.1rem; color: var(--navy);">Our newsletter archive is being prepared.</p>
+    <p style="margin-top: 20px;">Subscribe below to receive future editions.</p>
+  </div>
+  {% from "macros/newsletter-signup.njk" import newsletterSignup %}
+  {{ newsletterSignup(
+    'Get market intelligence delivered monthly',
+    'Join clients and partners who receive our analysis of political trends and strategic insights.',
+    'Subscribe Now'
+  ) }}
+</section>
