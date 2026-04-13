@@ -24,9 +24,7 @@ collections:
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
-  - name: "cases"
-    label: "Case Studies"
-    folder: "src/content/cases"
+  - name: "cases  - name: "cases  - name: "casesfolder: "src/content/cases"
     create: true
     fields:
       - { label: "Client", name: "client", widget: "string" }
