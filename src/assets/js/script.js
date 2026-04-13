@@ -458,3 +458,197 @@ function initThemeToggle() {
     }
   });
 }
+/* =========================================
+   12. SEARCH FUNCTIONALITY (PAGEFIND)
+   ========================================= */
+function initSearch() {
+  const toggle = document.querySelector('.search-toggle');
+  const modal = document.querySelector('.search-modal');
+  const close = document.querySelector('.search-close');
+  const overlay = document.querySelector('.search-modal__overlay');
+  const input = document.getElementById('search-input');
+  const clear = document.getElementById('search-clear');
+  const results = document.getElementById('search-results');
+
+  if (!toggle || !modal) return;
+
+  let pagefind = null;
+  let selectedIndex = -1;
+  let searchResults = [];
+
+  // Load Pagefind
+  async function loadPagefind() {
+    if (pagefind) return pagefind;
+    try {
+      pagefind = await import('/pagefind/pagefind.js');
+      await pagefind.options({ excerptLength: 30 });
+      return pagefind;
+    } catch (e) {
+      console.warn('Pagefind not available');
+      return null;
+    }
+  }
+
+  // Open modal
+  function openModal() {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => input.focus(), 100);
+    loadPagefind();
+  }
+
+  // Close modal
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    input.value = '';
+    clear.style.display = 'none';
+    selectedIndex = -1;
+    showPlaceholder();
+  }
+
+  // Show placeholder
+  function showPlaceholder() {
+    results.innerHTML = `
+      <div class="search-placeholder">
+        <span class="material-symbols-outlined">search</span>
+        <p>Start typing to search case studies, news, services, and team members...</p>
+      </div>
+    `;
+  }
+
+  // Perform search
+  async function performSearch(query) {
+    if (!query || query.length < 2) {
+      showPlaceholder();
+      clear.style.display = 'none';
+      return;
+    }
+
+    clear.style.display = 'flex';
+
+    const pf = await loadPagefind();
+    if (!pf) {
+      results.innerHTML = '<div class="search-no-results">Search unavailable</div>';
+      return;
+    }
+
+    const search = await pf.search(query);
+    searchResults = search.results;
+
+    if (!searchResults.length) {
+      results.innerHTML = '<div class="search-no-results">No results found</div>';
+      return;
+    }
+
+    let html = '';
+    for (let i = 0; i < Math.min(searchResults.length, 10); i++) {
+      const result = searchResults[i];
+      const data = await result.data();
+
+      // Determine icon based on URL
+      let icon = 'description';
+      if (data.url.includes('/services/')) icon = 'business_center';
+      else if (data.url.includes('/cases/')) icon = 'work';
+      else if (data.url.includes('/news/')) icon = 'newspaper';
+      else if (data.url.includes('/team/')) icon = 'person';
+      else if (data.url.includes('/about/')) icon = 'info';
+      else if (data.url.includes('/alliance/')) icon = 'handshake';
+
+      // Determine category
+      let category = 'Page';
+      if (data.url.includes('/services/')) category = 'Service';
+      else if (data.url.includes('/cases/')) category = 'Case Study';
+      else if (data.url.includes('/news/')) category = 'News';
+      else if (data.url.includes('/team/')) category = 'Team';
+      else if (data.url.includes('/alliance/')) category = 'Alliance';
+
+      html += `
+        <a href="${data.url}" class="search-result-item" data-index="${i}">
+          <span class="material-symbols-outlined search-result-icon">${icon}</span>
+          <div class="search-result-content">
+            <div class="search-result-meta">${category}</div>
+            <div class="search-result-title">${data.meta?.title || 'Untitled'}</div>
+            ${data.excerpt ? `<div class="search-result-excerpt">${data.excerpt}</div>` : ''}
+          </div>
+        </a>
+      `;
+    }
+
+    results.innerHTML = html;
+    selectedIndex = -1;
+  }
+
+  // Update selected item
+  function updateSelection() {
+    const items = results.querySelectorAll('.search-result-item');
+    items.forEach((item, i) => {
+      item.classList.toggle('selected', i === selectedIndex);
+      if (i === selectedIndex) {
+        item.scrollIntoView({ block: 'nearest' });
+      }
+    });
+  }
+
+  // Event listeners
+  toggle.addEventListener('click', openModal);
+  close.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+
+  let debounceTimer;
+  input.addEventListener('input', (e) => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => performSearch(e.target.value.trim()), 200);
+  });
+
+  clear.addEventListener('click', () => {
+    input.value = '';
+    clear.style.display = 'none';
+    showPlaceholder();
+    input.focus();
+  });
+
+  // Keyboard navigation
+  input.addEventListener('keydown', (e) => {
+    const items = results.querySelectorAll('.search-result-item');
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+      updateSelection();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      selectedIndex = Math.max(selectedIndex - 1, -1);
+      updateSelection();
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (selectedIndex >= 0 && items[selectedIndex]) {
+        items[selectedIndex].click();
+      } else if (items.length > 0) {
+        items[0].click();
+      }
+    } else if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Close on escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Keyboard shortcut (Cmd+K or Ctrl+K)
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      openModal();
+    }
+  });
+}
+
+// Add to DOMContentLoaded
+initSearch();

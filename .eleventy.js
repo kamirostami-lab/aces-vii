@@ -32,3 +32,10 @@ module.exports = function(eleventyConfig) {
     markdownTemplateEngine: "njk"
   };
 };
+// Exclude admin and modal content from search
+eleventyConfig.addGlobalData("pagefindExclude", true);
+
+eleventyConfig.addCollection("newsletters", function(collectionApi) {
+  return collectionApi.getFilteredByGlob("src/content/newsletters/*.md")
+      .sort((a, b) => b.date - a.date);
+});

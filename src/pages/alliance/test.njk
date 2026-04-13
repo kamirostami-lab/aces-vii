@@ -1,0 +1,34 @@
+---
+layout: iaa-base.njk
+title: Test Alliance Data
+description: Debug page
+permalink: /alliance/test/index.html
+---
+
+<h1>Data Debug</h1>
+
+<h2>iaaPartners (camelCase)</h2>
+{% if iaaPartners %}
+  <p>Found {{ iaaPartners | length }} partners</p>
+  <ul>
+  {% for p in iaaPartners %}
+    <li>{{ p.name }} - {{ p.category }}</li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>❌ iaaPartners is empty or undefined</p>
+{% endif %}
+
+<h2>iaa-partners (hyphenated)</h2>
+{% if iaa-partners %}
+  <p>Found {{ iaa-partners | length }} partners</p>
+{% else %}
+  <p>❌ iaa-partners is undefined</p>
+{% endif %}
+
+<h2>All available data keys</h2>
+<pre>
+{% for key, value in collections %}
+  {{ key }}
+{% endfor %}
+</pre>
