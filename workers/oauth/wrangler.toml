@@ -1,0 +1,10 @@
+name = "ace-strategies-oauth"
+main = "oauth.js"
+compatibility_date = "2024-01-01"
+
+[env.production]
+vars = { WORKER_DOMAIN = "ace-strategies-oauth.your-subdomain.workers.dev" }
+
+[env.production.secrets]
+GITHUB_CLIENT_ID = ""
+GITHUB_CLIENT_SECRET = ""

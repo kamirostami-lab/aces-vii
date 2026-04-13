@@ -1,7 +1,7 @@
 # Decap CMS Configuration — Ace Strategies Editorial Platform
 backend:
   name: github
-  repo: aces-v/aces-v
+  repo: aces-v/aces-vii
   branch: main
   base_url: https://acestrategies.au
   auth_endpoint: /api/auth
