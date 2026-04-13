@@ -1,0 +1,4 @@
+/admin/* /admin/index.html 200
+/api/auth https://ace-strategies-oauth.kami-rostami-design.workers.dev/api/auth 200
+/api/auth/callback https://ace-strategies-oauth.kami-rostami-design.workers.dev/api/auth/callback 200
+/alliance/members/* /.netlify/functions/member-auth 200
