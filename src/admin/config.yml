@@ -16,33 +16,37 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Author", name: "author", widget: "string", default: "Ace Strategies" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "Author", name: "author", widget: "string", default: "Ace Strategies"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
 
-  - name: "cases  - name: "cases  - name: "casesfolder: "src/content/cases"
+  - name: "cases"
+    label: "Case Studies"
+    folder: "src/content/cases"
     create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Client", name: "client", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["Government Relations", "Stakeholder Engagement", "Strategic Communications", "Media Management", "Market Entry"] }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Quote", name: "quote", widget: "text", required: false }
-      - { label: "Quote Author", name: "quote_author", widget: "string", required: false }
+      - {label: "Client", name: "client", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["Government Relations", "Stakeholder Engagement", "Strategic Communications", "Media Management", "Market Entry"]}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Quote", name: "quote", widget: "text", required: false}
+      - {label: "Quote Author", name: "quote_author", widget: "string", required: false}
 
   - name: "team"
     label: "Team Members"
     folder: "src/content/team"
     create: true
+    slug: "{{slug}}"
     fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Role", name: "role", widget: "string" }
-      - { label: "Profile Image", name: "image_profile", widget: "image" }
-      - { label: "Index Image", name: "image_index", widget: "image" }
-      - { label: "Short Bio", name: "bio_short", widget: "text" }
-      - { label: "Full Bio", name: "bio_paragraphs", widget: "list", field: { label: "Paragraph", name: "text", widget: "text" } }
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Profile Image", name: "image_profile", widget: "image"}
+      - {label: "Index Image", name: "image_index", widget: "image"}
+      - {label: "Short Bio", name: "bio_short", widget: "text"}
+      - {label: "Full Bio", name: "bio_paragraphs", widget: "list", field: {label: "Paragraph", name: "text", widget: "text"}}
