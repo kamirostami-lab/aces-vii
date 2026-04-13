@@ -5687,16 +5687,25 @@ body.theme-light .search-footer {
   .search-modal {
     padding-top: 0;
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 62ff988021adc38068473fedda44b7a99602493f
   .search-modal__content {
     max-height: 100vh;
     border-radius: 0;
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 62ff988021adc38068473fedda44b7a99602493f
   .search-footer {
     display: none;
   }
 }
+<<<<<<< HEAD
 
 
 /* ==========================================================================
