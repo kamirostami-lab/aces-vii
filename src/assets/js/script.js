@@ -1,6 +1,6 @@
 /* ==========================================================================
    Ace Strategies — Main Script
-   Version: 2.0 | Phase 2 Carousel & Responsiveness
+   Version: 2.0 | Search + Theme Toggle + Carousels
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccordion();
   initScrollPolish();
   initPollAnimation();
-  initThemeToggle(); // Material Design 3 toggle
+  initThemeToggle();
+  initSearch();
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -186,7 +187,7 @@ function initScrollPolish() {
 
 
 /* =========================================
-   7. CAROUSEL SYSTEM — PHASE 2
+   7. CAROUSEL SYSTEM
    ========================================= */
 function initCarousels() {
   var configs = [
@@ -458,6 +459,8 @@ function initThemeToggle() {
     }
   });
 }
+
+
 /* =========================================
    12. SEARCH FUNCTIONALITY (PAGEFIND)
    ========================================= */
@@ -476,7 +479,6 @@ function initSearch() {
   let selectedIndex = -1;
   let searchResults = [];
 
-  // Load Pagefind
   async function loadPagefind() {
     if (pagefind) return pagefind;
     try {
@@ -489,7 +491,6 @@ function initSearch() {
     }
   }
 
-  // Open modal
   function openModal() {
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
@@ -498,7 +499,6 @@ function initSearch() {
     loadPagefind();
   }
 
-  // Close modal
   function closeModal() {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
@@ -509,7 +509,6 @@ function initSearch() {
     showPlaceholder();
   }
 
-  // Show placeholder
   function showPlaceholder() {
     results.innerHTML = `
       <div class="search-placeholder">
@@ -519,7 +518,6 @@ function initSearch() {
     `;
   }
 
-  // Perform search
   async function performSearch(query) {
     if (!query || query.length < 2) {
       showPlaceholder();
@@ -548,7 +546,6 @@ function initSearch() {
       const result = searchResults[i];
       const data = await result.data();
 
-      // Determine icon based on URL
       let icon = 'description';
       if (data.url.includes('/services/')) icon = 'business_center';
       else if (data.url.includes('/cases/')) icon = 'work';
@@ -557,7 +554,6 @@ function initSearch() {
       else if (data.url.includes('/about/')) icon = 'info';
       else if (data.url.includes('/alliance/')) icon = 'handshake';
 
-      // Determine category
       let category = 'Page';
       if (data.url.includes('/services/')) category = 'Service';
       else if (data.url.includes('/cases/')) category = 'Case Study';
@@ -581,7 +577,6 @@ function initSearch() {
     selectedIndex = -1;
   }
 
-  // Update selected item
   function updateSelection() {
     const items = results.querySelectorAll('.search-result-item');
     items.forEach((item, i) => {
@@ -592,7 +587,6 @@ function initSearch() {
     });
   }
 
-  // Event listeners
   toggle.addEventListener('click', openModal);
   close.addEventListener('click', closeModal);
   overlay.addEventListener('click', closeModal);
@@ -610,7 +604,6 @@ function initSearch() {
     input.focus();
   });
 
-  // Keyboard navigation
   input.addEventListener('keydown', (e) => {
     const items = results.querySelectorAll('.search-result-item');
 
@@ -634,14 +627,12 @@ function initSearch() {
     }
   });
 
-  // Close on escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       closeModal();
     }
   });
 
-  // Keyboard shortcut (Cmd+K or Ctrl+K)
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
@@ -649,6 +640,3 @@ function initSearch() {
     }
   });
 }
-
-// Add to DOMContentLoaded
-initSearch();
