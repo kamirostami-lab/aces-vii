@@ -19,6 +19,21 @@ module.exports = function(eleventyConfig) {
     });
   });
 
+  eleventyConfig.addCollection("news", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/content/news/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("cases", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/content/cases/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("newsletters", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/content/newsletters/*.md")
+      .sort((a, b) => b.date - a.date);
+  });
+
   return {
     dir: {
       input: "src",
@@ -32,10 +47,3 @@ module.exports = function(eleventyConfig) {
     markdownTemplateEngine: "njk"
   };
 };
-// Exclude admin and modal content from search
-eleventyConfig.addGlobalData("pagefindExclude", true);
-
-eleventyConfig.addCollection("newsletters", function(collectionApi) {
-  return collectionApi.getFilteredByGlob("src/content/newsletters/*.md")
-      .sort((a, b) => b.date - a.date);
-});
