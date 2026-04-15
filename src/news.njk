@@ -1,0 +1,36 @@
+---
+layout: base.njk
+title: News & Insights
+description: Latest polling data, strategic analysis, and corporate announcements from Ace Strategies.
+active_nav: /news/
+permalink: /news/index.html
+---
+
+<section class="news-hero" data-theme="dark">
+  <div class="news-hero-content">
+    <h1 class="hero-title">Market Intelligence <span style="font-family:var(--font-serif);font-style:italic;color:var(--sky-blue);">&amp; Insights</span></h1>
+    <p class="hero-subtitle">Polling data, strategic analysis, and company announcements.</p>
+  </div>
+</section>
+
+<section class="polling-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Exclusive Polling</span>
+    <h2 class="section-title">South Australia: The Political Pulse</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="poll-vis-container">
+    <div class="poll-header-row"><span>Two-Party Preferred</span><span>Source: DemosAU / Ace Strategies</span></div>
+    <div class="poll-bar-track">
+      <div class="poll-bar-segment segment-labor" style="width: {{ polling.south_australia.labor_tpp }}%;">ALP {{ polling.south_australia.labor_tpp }}%</div>
+      <div class="poll-bar-segment segment-liberal" style="width: {{ polling.south_australia.liberal_tpp }}%;">LIB {{ polling.south_australia.liberal_tpp }}%</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" data-theme="dark">
+  <div class="cta-content">
+    <h2 class="cta-title">Stay ahead with <span class="highlight">Ace intelligence.</span></h2>
+    <a href="/contact/" class="cta-button">Contact us today</a>
+  </div>
+</section>

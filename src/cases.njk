@@ -1,0 +1,40 @@
+---
+layout: base.njk
+title: Case Studies
+description: Proven results for clients across government relations, stakeholder engagement, and strategic communications.
+active_nav: /cases/
+permalink: /cases/index.html
+---
+
+<section class="cases-hero" data-theme="dark">
+  <div class="hero-content">
+    <h1 class="hero-page-title">Proven <span>Impact</span></h1>
+    <p class="hero-page-sub">Real results for clients navigating complex challenges.</p>
+  </div>
+</section>
+
+<section class="cases-grid-section" data-theme="light">
+  <div class="case-studies-grid">
+    {% for item in cases %}
+    <div class="case-study-card">
+      <div class="case-media"><img src="{{ item.image }}" alt="{{ item.image_alt }}"></div>
+      <div class="case-content">
+        <span class="case-category">{{ item.category }}</span>
+        <h3 class="case-client">{{ item.client }}</h3>
+        <h4 class="case-title">{{ item.title }}</h4>
+        <div class="case-body">{% for para in item.body_paragraphs %}<p>{{ para }}</p>{% endfor %}</div>
+        {% if item.has_quote %}
+        <div class="case-quote-box"><p class="case-quote">"{{ item.quote }}"</p><p class="case-author">{{ item.quote_author }}</p></div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-section" data-theme="dark">
+  <div class="cta-content">
+    <h2 class="cta-title">Let's write <span class="highlight">your story</span></h2>
+    <a href="/contact/" class="cta-button">Start a conversation</a>
+  </div>
+</section>

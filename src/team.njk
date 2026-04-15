@@ -1,0 +1,47 @@
+---
+layout: base.njk
+title: Our Team
+description: Meet the Ace Strategies team — strategic communications and government relations specialists.
+active_nav: /team/
+permalink: /team/index.html
+---
+
+<section class="team-hero" data-theme="dark">
+  <div class="hero-media">
+    <video autoplay muted loop playsinline>
+      <source src="/assets/repository/videos/vid-hero-first.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-content">
+    <h1 class="team-hero-title">Experience, integrity, and <br><span>strategic insight.</span></h1>
+    <p class="hero-subtitle">Our team combines decades of experience in senior government, media, and private sector roles.</p>
+  </div>
+</section>
+
+<section class="team-section" data-theme="light">
+  <div class="team-container">
+    {% for member in team %}
+    <div class="profile-block" id="{{ member.id }}">
+      <div class="profile-image-wrapper">
+        <img src="{{ member.image_profile }}" alt="{{ member.image_alt_profile }}" class="profile-img">
+      </div>
+      <div class="profile-content">
+        <h2>{{ member.name }}</h2>
+        <span class="profile-role">{{ member.role }}</span>
+        <div class="profile-bio">
+          {% for para in member.bio_paragraphs %}
+          <p>{{ para }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-section" data-theme="dark">
+  <div class="cta-content">
+    <h2 class="cta-title">Work with <span class="highlight">the best</span></h2>
+    <a href="/contact/" class="cta-button">Contact us</a>
+  </div>
+</section>

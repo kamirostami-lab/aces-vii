@@ -1,0 +1,51 @@
+---
+layout: base.njk
+title: Contact
+description: Contact Ace Strategies to discuss your government relations, stakeholder engagement, strategic communications, media management or market entry needs.
+active_nav: /contact/
+permalink: /contact/index.html
+---
+
+<section class="hero hero--page" data-theme="dark">
+  <div class="hero-media">
+    <video class="hero-video hero--page" autoplay muted loop playsinline preload="metadata">
+      <source src="/assets/repository/videos/vid-market-first.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-content" style="max-width:700px;">
+    <h1 class="hero-title">Start the Conversation</h1>
+    <p class="hero-subtitle">We welcome the opportunity to discuss your needs.</p>
+  </div>
+</section>
+
+<section class="contact-section-dark" data-theme="dark">
+  <div class="contact-container">
+    <div class="contact-info-panel">
+      <h2 class="contact-heading">Head Office</h2>
+      <div class="contact-divider"></div>
+      <div class="contact-detail-row">
+        <span class="material-symbols-outlined icon-gold">location_on</span>
+        <div><span class="detail-label">Address</span><p class="detail-text">{{ site.address | replace(', ', '<br>') | safe }}</p></div>
+      </div>
+      <div class="contact-detail-row">
+        <span class="material-symbols-outlined icon-gold">call</span>
+        <div><span class="detail-label">Phone</span><a href="tel:{{ site.phone | replace(' ', '') }}" class="detail-link">{{ site.phone }}</a></div>
+      </div>
+      <div class="contact-detail-row">
+        <span class="material-symbols-outlined icon-gold">mail</span>
+        <div><span class="detail-label">Email</span><a href="mailto:{{ site.email }}" class="detail-link">{{ site.email }}</a></div>
+      </div>
+    </div>
+    <div class="contact-form-panel">
+      <h3 class="form-heading">Send a Message</h3>
+      <form action="#" method="POST" class="ace-premium-form">
+        <div class="form-row">
+          <div class="premium-input-group"><input type="text" class="premium-input" placeholder=" " required><label class="premium-label">Full Name</label></div>
+          <div class="premium-input-group"><input type="email" class="premium-input" placeholder=" " required><label class="premium-label">Email Address</label></div>
+        </div>
+        <div class="premium-input-group"><textarea class="premium-input" rows="4" placeholder=" " required></textarea><label class="premium-label">How can we help?</label></div>
+        <button type="submit" class="premium-submit-btn"><span>Send Message</span><span class="material-symbols-outlined">arrow_forward</span></button>
+      </form>
+    </div>
+  </div>
+</section>
