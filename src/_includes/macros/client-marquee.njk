@@ -4,11 +4,10 @@
   @param {String} basePath - Base path for logo images (default: '/assets/repository/images/clients/')
   @param {String} speed - Animation speed modifier (default: '90s')
   @param {Boolean} grayscale - Whether logos should be grayscale by default (default: true)
-  @param {String} className - Additional CSS classes for the track
 #}
-{% macro marquee(items, basePath = '/assets/repository/images/clients/', speed = '90s', grayscale = true, className = '') %}
+{% macro marquee(items, basePath = '/assets/repository/images/clients/', speed = '90s', grayscale = true) %}
 <div class="logo-track-wrapper">
-  <div class="logo-track {{ className }}" style="animation-duration: {{ speed }};">
+  <div class="logo-track" style="animation-duration: {{ speed }};">
     {# First set of logos #}
     {% for item in items %}
     <div class="logo-item {% if not grayscale %}no-grayscale{% endif %}">
