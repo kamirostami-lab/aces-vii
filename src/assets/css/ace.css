@@ -3460,7 +3460,7 @@ body:has(.legal-content-wrapper) {
   padding: 12px;
 }
 /* ==========================================================================
-   38. IAA — INVEST AUSTRALIA ALLIANCE (EDITORIAL REDESIGN)
+   38. IAA — INVEST AUSTRALIA ALLIANCE (COMPLETE CONSOLIDATED STYLES)
    ========================================================================== */
 
 :root {
@@ -3480,9 +3480,11 @@ body.iaa-page {
   font-family: var(--font);
 }
 
-/* ── Global Nav & Footer Overrides (Scoping to IAA page only) ────────── */
 
-/* Default State: Silver */
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — GLOBAL NAVIGATION (Default State: Silver)
+   ────────────────────────────────────────────────────────────────────────── */
+
 body.iaa-page .nav {
   background-color: var(--iaa-silver) !important;
   backdrop-filter: blur(12px);
@@ -3544,17 +3546,62 @@ body.iaa-page .nav.is-scrolling .nav-link.active::after {
   background: var(--iaa-navy) !important;
 }
 
-/* ── Mobile Navigation Curtain ─────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — MOBILE NAVIGATION (Clip-Path Expansion Animation)
+   ────────────────────────────────────────────────────────────────────────── */
+
 @media (max-width: 1024px) {
+
   /* Set curtain background to IAA Gold */
   body.iaa-page .nav-menu {
     background-color: var(--iaa-gold-dark) !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    gap: 32px;
+    border-radius: 0;
+    z-index: 10000;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    list-style: none;
+
+    /* Clip-path animation — expands from top-right (hamburger position) */
+    clip-path: circle(0% at calc(100% - 40px) 40px);
+    transition: clip-path 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: visible;
+  }
+
+  body.iaa-page .nav-menu.active {
+    clip-path: circle(150% at calc(100% - 40px) 40px);
   }
 
   /* Default link state: Navy */
   body.iaa-page .nav-menu .nav-link {
     color: var(--iaa-navy) !important;
+    font-size: 1.8rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease 0.2s, transform 0.3s ease 0.2s, color 0.3s ease;
   }
+
+  body.iaa-page .nav-menu.active .nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered animation for menu items */
+  body.iaa-page .nav-menu.active .nav-link:nth-child(1) { transition-delay: 0.15s; }
+  body.iaa-page .nav-menu.active .nav-link:nth-child(2) { transition-delay: 0.20s; }
+  body.iaa-page .nav-menu.active .nav-link:nth-child(3) { transition-delay: 0.25s; }
+  body.iaa-page .nav-menu.active .nav-link:nth-child(4) { transition-delay: 0.30s; }
+  body.iaa-page .nav-menu.active .nav-link:nth-child(5) { transition-delay: 0.35s; }
 
   /* Hover link state: White */
   body.iaa-page .nav-menu .nav-link:hover {
@@ -3575,38 +3622,250 @@ body.iaa-page .nav.is-scrolling .nav-link.active::after {
   body.iaa-page .nav-menu .nav-link.active::after {
     background-color: var(--iaa-red) !important;
   }
+
+  /* Hide nav-link initially */
+  body.iaa-page .nav-menu:not(.active) .nav-link {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  /* Body overflow hidden when menu is open */
+  body.iaa-page.menu-open {
+    overflow: hidden;
+  }
 }
 
-/* Footer Defaults */
-body.iaa-page .site-footer {
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — LIGHT MODE OVERRIDES FOR NAVIGATION
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.theme-light.iaa-page .nav {
   background-color: var(--iaa-silver) !important;
-  border-top: 1px solid rgba(16, 24, 40, 0.08);
+  border-color: var(--iaa-border) !important;
+}
+
+body.theme-light.iaa-page .nav-link {
   color: var(--iaa-navy) !important;
 }
-body.iaa-page .site-footer h3 {
+
+body.theme-light.iaa-page .nav-link:hover {
+  color: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav-link.active::after {
+  background: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav-toggle span {
+  background: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .logo img {
+  filter: brightness(0.15);
+}
+
+body.theme-light.iaa-page .nav.is-scrolling {
+  background-color: var(--iaa-gold-dark) !important;
+}
+
+body.theme-light.iaa-page .nav.is-scrolling .nav-link {
   color: var(--iaa-navy) !important;
-  font-weight: 600;
-  letter-spacing: 0.1em;
 }
-body.iaa-page .footer-ack {
-  color: rgba(16, 24, 40, 0.75) !important;
-  font-weight: 400;
+
+/* Light mode mobile menu */
+@media (max-width: 1024px) {
+  body.theme-light.iaa-page .nav-menu {
+    background-color: var(--iaa-silver) !important;
+  }
+
+  body.theme-light.iaa-page .nav-menu .nav-link {
+    color: var(--iaa-navy) !important;
+  }
+
+  body.theme-light.iaa-page .nav-menu .nav-link:hover {
+    color: var(--iaa-red) !important;
+  }
+
+  body.theme-light.iaa-page .nav-menu .nav-link.active {
+    color: var(--iaa-red) !important;
+  }
+
+  body.theme-light.iaa-page .nav-menu .nav-link::after {
+    background-color: var(--iaa-red) !important;
+  }
 }
-body.iaa-page .iaa-footer-link {
-  color: rgba(16, 24, 40, 0.75) !important;
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — THEME TOGGLE (Material Design 3 with Alliance Colors)
+   ────────────────────────────────────────────────────────────────────────── */
+
+.iaa-theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
+.iaa-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.iaa-theme-toggle:focus-visible {
+  outline: 2px solid var(--iaa-red);
+  outline-offset: 4px;
+  border-radius: 100px;
+}
+
+/* Labels */
+.iaa-theme-toggle__label {
+  font-family: var(--font);
+  font-size: 0.75rem;
   font-weight: 500;
-  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--iaa-text);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
 }
-body.iaa-page .iaa-footer-link:hover {
-  color: var(--iaa-red) !important;
+
+.iaa-theme-toggle:hover .iaa-theme-toggle__label {
+  opacity: 1;
 }
-body.iaa-page .material-symbols-outlined { color: var(--iaa-navy) !important; opacity: 0.6; }
-body.iaa-page .alliance-footer-logo { filter: brightness(0.15); max-width: 200px; display: block; margin-bottom: 20px; }
-body.iaa-page .footer-brand-name { color: var(--iaa-navy) !important; font-weight: 700; margin-bottom: 6px; }
-body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-weight: 500; }
+
+body.theme-light .iaa-theme-toggle__label {
+  color: var(--iaa-navy);
+}
+
+body.theme-dark .iaa-theme-toggle__label {
+  color: var(--iaa-text);
+}
+
+/* Track — Alliance Colors */
+.iaa-theme-toggle__track {
+  position: relative;
+  width: 52px;
+  height: 32px;
+  background: var(--iaa-navy);
+  border-radius: 100px;
+  border: 2px solid var(--iaa-gold-dark);
+  transition: background 0.2s cubic-bezier(0.2, 0.0, 0.0, 1.0),
+  border-color 0.2s ease,
+  box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.iaa-theme-toggle:hover .iaa-theme-toggle__track {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  background: #1a2332;
+}
+
+body.theme-light .iaa-theme-toggle__track {
+  background: var(--iaa-silver);
+  border-color: var(--iaa-gold-dark);
+}
+
+body.theme-light .iaa-theme-toggle:hover .iaa-theme-toggle__track {
+  background: #c0c5d0;
+}
+
+/* Handle */
+.iaa-theme-toggle__handle {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: var(--iaa-gold-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.2, 0.0, 0.0, 1.0),
+  background 0.2s ease,
+  box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-light .iaa-theme-toggle__handle {
+  transform: translateX(20px);
+  background: var(--iaa-navy);
+}
+
+.iaa-theme-toggle:hover .iaa-theme-toggle__handle {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Icons */
+.iaa-theme-toggle__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease;
+}
+
+.iaa-theme-toggle__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.iaa-theme-toggle__icon--moon {
+  color: var(--iaa-navy);
+  opacity: 1;
+  transition: opacity 0.15s ease 0.05s;
+}
+
+.iaa-theme-toggle__icon--sun {
+  position: absolute;
+  color: var(--iaa-gold-dark);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+body.theme-light .iaa-theme-toggle__icon--moon {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+body.theme-light .iaa-theme-toggle__icon--sun {
+  opacity: 1;
+  transition: opacity 0.15s ease 0.05s;
+}
+
+/* Halo effect on hover */
+.iaa-theme-toggle__handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: rgba(181, 154, 90, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.iaa-theme-toggle:hover .iaa-theme-toggle__handle::before {
+  transform: translate(-50%, -50%) scale(1);
+}
 
 
-/* ── Typography ──────────────────────────────────────────────────────── */
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — TYPOGRAPHY
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-display-title {
   font-family: var(--font);
   font-weight: 300;
@@ -3658,7 +3917,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   margin-bottom: 40px;
 }
 
-/* ── Layout & Containers ─────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — LAYOUT & CONTAINERS
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-canvas {
   padding-bottom: 120px;
 }
@@ -3680,7 +3943,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   color: rgba(26, 43, 69, 0.85);
 }
 
-/* ── Asymmetrical Hero ───────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — ASYMMETRICAL HERO
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-hero-editorial {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -3720,7 +3987,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   gap: 32px;
 }
 
-/* Buttons */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — BUTTONS
+   ────────────────────────────────────────────────────────────────────────── */
+
 .btn-iaa-primary {
   display: inline-block;
   padding: 16px 40px;
@@ -3759,7 +4030,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   color: var(--iaa-red);
 }
 
-/* ── Refined Marquee ─────────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — MARQUEE
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-marquee-strip {
   padding: 60px 0;
   border-top: 1px solid var(--iaa-border);
@@ -3768,11 +4043,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   background: var(--iaa-bg);
 }
 
-.iaa-marquee-strip .logo-track {
-  /* Using the global animation defined in Section 09 */
-}
 
-/* ── Typographic Grids ───────────────────────────────────────────────── */
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — TYPOGRAPHIC GRIDS
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-section-intro {
   max-width: 800px;
   margin-bottom: 80px;
@@ -3810,7 +4085,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   color: rgba(16, 24, 40, 0.8);
 }
 
-/* ── Service Architecture Numbers ────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — SERVICE ARCHITECTURE (Numbered Items)
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-service-item {
   display: flex;
   gap: 32px;
@@ -3825,7 +4104,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   margin-top: 4px;
 }
 
-/* ── Staggered Engagement Timeline ───────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — ENGAGEMENT TIMELINE
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-timeline {
   max-width: 800px;
   margin: 0 auto;
@@ -3854,7 +4137,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   z-index: 2;
 }
 
-/* ── Alliance Index ─────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — ALLIANCE INDEX (Partner List)
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-index-wrapper {
   border-top: 1px solid var(--iaa-text);
 }
@@ -3896,7 +4183,11 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   color: rgba(26, 43, 69, 0.75);
 }
 
-/* ── Minimalist Editorial CTA (With Rounded Corners) ─────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — EDITORIAL CTA
+   ────────────────────────────────────────────────────────────────────────── */
+
 .iaa-editorial-cta {
   padding: 120px 40px;
 }
@@ -3912,32 +4203,452 @@ body.iaa-page .footer-bottom p { color: rgba(16, 24, 40, 0.6) !important; font-w
   box-shadow: 0 20px 40px rgba(16, 24, 40, 0.04);
 }
 
-/* ── Responsive ──────────────────────────────────────────────────────── */
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — FOOTER
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.iaa-page .site-footer {
+  background-color: var(--iaa-silver) !important;
+  border-top: 1px solid rgba(16, 24, 40, 0.08);
+  color: var(--iaa-navy) !important;
+}
+
+body.iaa-page .site-footer h3 {
+  color: var(--iaa-navy) !important;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+body.iaa-page .footer-ack {
+  color: rgba(16, 24, 40, 0.75) !important;
+  font-weight: 400;
+}
+
+body.iaa-page .iaa-footer-link {
+  color: rgba(16, 24, 40, 0.75) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+body.iaa-page .iaa-footer-link:hover {
+  color: var(--iaa-red) !important;
+}
+
+body.iaa-page .material-symbols-outlined {
+  color: var(--iaa-navy) !important;
+  opacity: 0.6;
+}
+
+body.iaa-page .alliance-footer-logo {
+  filter: brightness(0.15);
+  max-width: 200px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+body.iaa-page .footer-brand-name {
+  color: var(--iaa-navy) !important;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+body.iaa-page .footer-bottom {
+  border-top-color: var(--iaa-border) !important;
+}
+
+body.iaa-page .footer-bottom p {
+  color: rgba(16, 24, 40, 0.6) !important;
+  font-weight: 500;
+}
+
+/* Footer bottom layout with theme toggle */
+body.iaa-page .footer-bottom {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--iaa-border);
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — DARK MODE OVERRIDES
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.iaa-page {
+  --iaa-navy: #0a0f1a;
+  --iaa-bg: #0d1117;
+  --iaa-silver: #1a2332;
+  --iaa-gold-light: #2a2a2a;
+  --iaa-text: #ffffff;
+  --iaa-border: rgba(255, 255, 255, 0.1);
+  --iaa-gold-dark: #C9A961;
+  --iaa-red: #ff3366;
+  background-color: var(--iaa-bg);
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-display-title,
+body.iaa-page .iaa-section-title,
+body.iaa-page .iaa-item-title {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-lead-text,
+body.iaa-page .iaa-item-text,
+body.iaa-page .iaa-section-desc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+body.iaa-page .iaa-index-row {
+  border-bottom-color: var(--iaa-border);
+}
+
+body.iaa-page .iaa-index-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+body.iaa-page .iaa-index-cat {
+  color: var(--iaa-gold-dark);
+}
+
+body.iaa-page .iaa-index-name {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .iaa-index-desc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+body.iaa-page .iaa-timeline-bg {
+  color: var(--iaa-text);
+  opacity: 0.04;
+}
+
+body.iaa-page .iaa-cta-box {
+  background: #1a2332;
+  border-color: var(--iaa-border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.iaa-page .iaa-marquee-strip {
+  background: var(--iaa-bg);
+  border-top-color: var(--iaa-border);
+  border-bottom-color: var(--iaa-border);
+}
+
+body.iaa-page .iaa-grid-item,
+body.iaa-page .iaa-service-item {
+  border-top-color: var(--iaa-border);
+}
+
+body.iaa-page .iaa-video-frame {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+body.iaa-page .btn-iaa-primary {
+  background-color: var(--iaa-gold-dark);
+  border-color: var(--iaa-gold-dark);
+  color: var(--iaa-navy);
+}
+
+body.iaa-page .btn-iaa-primary:hover {
+  background-color: transparent;
+  color: var(--iaa-gold-dark);
+}
+
+body.iaa-page .btn-iaa-text {
+  color: var(--iaa-text);
+}
+
+body.iaa-page .btn-iaa-text:hover {
+  color: var(--iaa-red);
+  border-bottom-color: var(--iaa-red);
+}
+
+body.iaa-page .site-footer {
+  background-color: #0a0f1a !important;
+  border-top-color: var(--iaa-border);
+  color: var(--iaa-text) !important;
+}
+
+body.iaa-page .site-footer h3 {
+  color: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .site-footer a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+body.iaa-page .site-footer a:hover {
+  color: var(--iaa-red) !important;
+}
+
+body.iaa-page .footer-ack {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+body.iaa-page .footer-bottom p {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.iaa-page .alliance-footer-logo {
+  filter: brightness(1);
+}
+
+body.iaa-page .material-symbols-outlined {
+  color: var(--iaa-gold-dark) !important;
+  opacity: 1;
+}
+
+body.iaa-page .iaa-superhead {
+  color: var(--iaa-gold-dark);
+}
+
+body.iaa-page .iaa-superhead::before {
+  background-color: var(--iaa-red);
+}
+
+body.iaa-page .iaa-service-num {
+  color: var(--iaa-red);
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — LIGHT MODE OVERRIDES (Full)
+   ────────────────────────────────────────────────────────────────────────── */
+
+body.theme-light.iaa-page {
+  --iaa-navy: #101828;
+  --iaa-bg: #F4F5F6;
+  --iaa-silver: #D0D3DB;
+  --iaa-gold-light: #F5E4C0;
+  --iaa-text: #101828;
+  --iaa-border: rgba(16, 24, 40, 0.12);
+  --iaa-gold-dark: #B59A5A;
+  --iaa-red: #DA1966;
+  background-color: var(--iaa-bg);
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-display-title,
+body.theme-light.iaa-page .iaa-section-title,
+body.theme-light.iaa-page .iaa-item-title {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-lead-text,
+body.theme-light.iaa-page .iaa-item-text,
+body.theme-light.iaa-page .iaa-section-desc {
+  color: rgba(16, 24, 40, 0.85);
+}
+
+body.theme-light.iaa-page .iaa-index-row {
+  border-bottom-color: var(--iaa-border);
+}
+
+body.theme-light.iaa-page .iaa-index-row:hover {
+  background: rgba(16, 24, 40, 0.03);
+}
+
+body.theme-light.iaa-page .iaa-index-cat {
+  color: var(--iaa-gold-dark);
+}
+
+body.theme-light.iaa-page .iaa-index-name {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .iaa-index-desc {
+  color: rgba(16, 24, 40, 0.75);
+}
+
+body.theme-light.iaa-page .iaa-timeline-bg {
+  color: var(--iaa-navy);
+  opacity: 0.04;
+}
+
+body.theme-light.iaa-page .iaa-cta-box {
+  background: #ffffff;
+  border-color: var(--iaa-border);
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.04);
+}
+
+body.theme-light.iaa-page .iaa-marquee-strip {
+  background: var(--iaa-bg);
+  border-top-color: var(--iaa-border);
+  border-bottom-color: var(--iaa-border);
+}
+
+body.theme-light.iaa-page .iaa-grid-item,
+body.theme-light.iaa-page .iaa-service-item {
+  border-top-color: var(--iaa-border);
+}
+
+body.theme-light.iaa-page .iaa-video-frame {
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.08);
+}
+
+body.theme-light.iaa-page .btn-iaa-primary {
+  background-color: var(--iaa-navy);
+  border-color: var(--iaa-navy);
+  color: #ffffff;
+}
+
+body.theme-light.iaa-page .btn-iaa-primary:hover {
+  background-color: transparent;
+  color: var(--iaa-navy);
+}
+
+body.theme-light.iaa-page .btn-iaa-text {
+  color: var(--iaa-text);
+}
+
+body.theme-light.iaa-page .btn-iaa-text:hover {
+  color: var(--iaa-red);
+  border-bottom-color: var(--iaa-red);
+}
+
+body.theme-light.iaa-page .site-footer {
+  background-color: var(--iaa-silver) !important;
+  border-top-color: var(--iaa-border);
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .site-footer h3 {
+  color: var(--iaa-navy) !important;
+}
+
+body.theme-light.iaa-page .site-footer a {
+  color: rgba(16, 24, 40, 0.75) !important;
+}
+
+body.theme-light.iaa-page .site-footer a:hover {
+  color: var(--iaa-red) !important;
+}
+
+body.theme-light.iaa-page .footer-ack {
+  color: rgba(16, 24, 40, 0.75) !important;
+}
+
+body.theme-light.iaa-page .footer-bottom p {
+  color: rgba(16, 24, 40, 0.6) !important;
+}
+
+body.theme-light.iaa-page .alliance-footer-logo {
+  filter: brightness(0.15);
+}
+
+body.theme-light.iaa-page .material-symbols-outlined {
+  color: var(--iaa-navy) !important;
+  opacity: 0.6;
+}
+
+body.theme-light.iaa-page .iaa-superhead {
+  color: var(--iaa-gold-dark);
+}
+
+body.theme-light.iaa-page .iaa-superhead::before {
+  background-color: var(--iaa-red);
+}
+
+body.theme-light.iaa-page .iaa-service-num {
+  color: var(--iaa-red);
+}
+
+body.theme-light.iaa-page .nav:hover:not(.is-scrolling) {
+  background-color: var(--iaa-gold-light) !important;
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — RESPONSIVE
+   ────────────────────────────────────────────────────────────────────────── */
+
 @media (max-width: 1024px) {
-  .iaa-hero-editorial { grid-template-columns: 1fr; padding-top: 140px; }
-  .iaa-hero-content { padding-right: 0; }
-  .iaa-video-frame { aspect-ratio: 16/9; }
-  .iaa-grid-3, .iaa-grid-2 { grid-template-columns: 1fr; gap: 40px; }
-  .iaa-index-row { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
-  .iaa-index-row:hover { padding-left: 0; padding-right: 0; background: transparent; }
-  .iaa-timeline-item { padding-left: 0; padding-top: 80px; }
-  .iaa-timeline-bg { top: 0; font-size: 6rem; }
+  .iaa-hero-editorial {
+    grid-template-columns: 1fr;
+    padding-top: 140px;
+  }
+
+  .iaa-hero-content {
+    padding-right: 0;
+  }
+
+  .iaa-video-frame {
+    aspect-ratio: 16/9;
+  }
+
+  .iaa-grid-3,
+  .iaa-grid-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .iaa-index-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 24px 0;
+  }
+
+  .iaa-index-row:hover {
+    padding-left: 0;
+    padding-right: 0;
+    background: transparent;
+  }
+
+  .iaa-timeline-item {
+    padding-left: 0;
+    padding-top: 80px;
+  }
+
+  .iaa-timeline-bg {
+    top: 0;
+    font-size: 6rem;
+  }
 }
 
 @media (max-width: 600px) {
-  .iaa-display-title { font-size: 2.25rem; }
-  .iaa-section-title { font-size: 1.85rem; }
-  .iaa-editorial-section { padding: 80px 0; }
-  .iaa-cta-box { padding: 60px 20px; }
-  .iaa-hero-actions { flex-direction: column; align-items: flex-start; }
-}
-/* ==========================================================================
-   39. IAA PAGE EXCLUSION OVERRIDES
-   (Resets typography for IAA's distinct visual language)
-   ========================================================================== */
+  .iaa-display-title {
+    font-size: 2.25rem;
+  }
 
-/* IAA pages use their own typographic scale — defined in Section 38 */
-/* These rules ensure IAA pages aren't affected by unified site typography */
+  .iaa-section-title {
+    font-size: 1.85rem;
+  }
+
+  .iaa-editorial-section {
+    padding: 80px 0;
+  }
+
+  .iaa-cta-box {
+    padding: 60px 20px;
+  }
+
+  .iaa-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  body.iaa-page .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .iaa-theme-toggle-wrapper {
+    justify-content: center;
+  }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   IAA — PAGE EXCLUSION OVERRIDES (Typography Reset)
+   ────────────────────────────────────────────────────────────────────────── */
 
 .iaa-page .hero-title,
 .iaa-page .detail-hero-title,
@@ -5937,4 +6648,82 @@ body.theme-light .footer-newsletter-form input::placeholder {
   .footer-newsletter-form button {
     width: 100%;
   }
+}
+
+/* ==========================================================================
+   48. MOBILE MENU — THEME AWARE
+   ========================================================================== */
+
+/* Dark Mode (Default) */
+.nav-menu {
+  background: var(--navy);
+}
+
+.nav-menu .nav-link {
+  color: var(--white) !important;
+}
+
+.nav-menu .nav-link:hover {
+  color: var(--gold) !important;
+}
+
+.nav-menu .nav-link.active {
+  color: var(--gold) !important;
+}
+
+/* Light Mode Overrides */
+body.theme-light .nav-menu {
+  background: var(--white);
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-light .nav-menu .nav-link {
+  color: var(--navy) !important;
+}
+
+body.theme-light .nav-menu .nav-link:hover {
+  color: var(--sky-blue) !important;
+}
+
+body.theme-light .nav-menu .nav-link.active {
+  color: var(--red) !important;
+}
+
+body.theme-light .nav-menu .nav-link::after {
+  background: var(--red) !important;
+}
+
+/* Hamburger icon colors for light mode */
+body.theme-light .nav-toggle span {
+  background: var(--navy) !important;
+}
+
+body.theme-light .nav-toggle {
+  border-color: rgba(26, 43, 69, 0.3) !important;
+}
+
+/* Close button styling for light mode */
+body.theme-light .nav-toggle.active span {
+  background: var(--navy) !important;
+}
+
+/* IAA Alliance page mobile menu (keeps IAA theming) */
+body.iaa-page .nav-menu {
+  background-color: var(--iaa-gold-dark) !important;
+}
+
+body.iaa-page .nav-menu .nav-link {
+  color: var(--iaa-navy) !important;
+}
+
+body.iaa-page .nav-menu .nav-link:hover {
+  color: #ffffff !important;
+}
+
+body.theme-light.iaa-page .nav-menu {
+  background-color: var(--iaa-silver) !important;
+}
+
+body.theme-light.iaa-page .nav-menu .nav-link {
+  color: var(--iaa-navy) !important;
 }
