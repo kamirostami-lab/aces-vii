@@ -6,23 +6,16 @@
   @param {Boolean} grayscale - Whether logos should be grayscale by default (default: true)
 #}
 {% macro marquee(items, basePath = '/assets/repository/images/clients/', speed = '90s', grayscale = true) %}
-{% if items and items.length > 0 %}
-  {# Ensure basePath ends with a slash #}
+{% if items and items.length %}
   {% set path = basePath %}
-  {% if not path.endswith('/') %}
-    {% set path = path + '/' %}
-  {% endif %}
-
+  {% if path.slice(-1) != '/' %}{% set path = path + '/' %}{% endif %}
 <div class="logo-track-wrapper">
   <div class="logo-track" style="animation-duration: {{ speed }};">
-    {# First set of logos #}
     {% for item in items %}
     <div class="logo-item {% if not grayscale %}no-grayscale{% endif %}">
       <img src="{{ path }}{{ item.file }}" alt="{{ item.alt }}" loading="lazy">
     </div>
     {% endfor %}
-
-    {# Duplicate set for seamless loop #}
     {% for item in items %}
     <div class="logo-item {% if not grayscale %}no-grayscale{% endif %}">
       <img src="{{ path }}{{ item.file }}" alt="{{ item.alt }}" loading="lazy">
