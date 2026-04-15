@@ -798,7 +798,10 @@ section {
   overflow: hidden;
 }
 
-.logo-track-wrapper { overflow: hidden; width: 100%; }
+.logo-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
 
 .logo-track {
   display: inline-flex;
@@ -807,10 +810,13 @@ section {
   animation: marquee 90s linear infinite;
 }
 
-.logo-track:hover { animation-play-state: paused; }
+.logo-track:hover {
+  animation-play-state: paused;
+}
 
 .logo-item {
-  width: 160px; height: 72px;
+  width: 160px;
+  height: 72px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -821,14 +827,43 @@ section {
   transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
 }
 
-.logo-item:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.08); }
-.logo-item img   { max-width: 100%; max-height: 100%; object-fit: contain; }
+.logo-item:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.08);
+}
+
+/* Override grayscale when explicitly disabled */
+.logo-item.no-grayscale {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+}
+
+.logo-item.no-grayscale:hover {
+  filter: grayscale(0%) !important;
+  transform: scale(1.08);
+}
+
+.logo-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
+.logo-item.no-grayscale {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
+}
+
+.logo-item.no-grayscale:hover {
+  filter: grayscale(0%) !important;
+  transform: scale(1.08);
+}
 
 /* ==========================================================================
    10. TESTIMONIALS CAROUSEL
