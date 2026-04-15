@@ -1850,6 +1850,23 @@ section {
   width: 100%;
 }
 
+/* Capabilities page noise overlay fix */
+.Capabilities-hero {
+  isolation: isolate;
+}
+
+.Capabilities-hero .noise-overlay {
+  z-index: 0 !important;
+}
+
+.Capabilities-hero .hero-media {
+  z-index: 1;
+}
+
+.Capabilities-hero .hero-content {
+  z-index: 2;
+}
+
 /* Service Detail Rows (moved from Section 40) */
 .service-detail-container {
   padding: 0 40px;
