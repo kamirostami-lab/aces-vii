@@ -288,8 +288,8 @@ body.on-dark-bg  .cursor-follower      { border-color: rgba(108, 172, 228, 0.3);
   justify-content: center;
   overflow: hidden;
   background: var(--navy);
+  isolation: isolate;
 }
-
 /* Homepage hero is taller and vertically centered */
 .hero--home {
   height: 100vh;
