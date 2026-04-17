@@ -5,7 +5,9 @@
   "scripts": {
     "build": "eleventy && pagefind --site _site --output-path _site/pagefind",
     "start": "eleventy --serve",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "deploy": "npm run build && wrangler deploy",
+    "preview": "npm run build && wrangler dev"
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.5",
@@ -23,6 +25,7 @@
     "node": ">=18"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "pagefind": "^1.5.2",
+    "wrangler": "^4.83.0"
   }
 }
