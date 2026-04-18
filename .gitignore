@@ -1,12 +1,5 @@
-node_modules/
+**/node_modules/**
 _site/
 .DS_Store
-.env
 *.log
-.cache/
-
-# wrangler files
-.wrangler
-.dev.vars*
-!.dev.vars.example
-!.env.example
+.netlify/

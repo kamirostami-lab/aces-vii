@@ -1,0 +1,27 @@
+{# 
+  Client Logo Marquee Macro
+  @param {Array} items - Array of logo objects with 'file' and 'alt' properties
+  @param {String} basePath - Base path for logo images (default: '/assets/repository/images/clients/')
+  @param {String} speed - Animation speed modifier (default: '90s')
+  @param {Boolean} grayscale - Whether logos should be grayscale by default (default: true)
+#}
+{% macro marquee(items, basePath = '/assets/repository/images/clients/', speed = '90s', grayscale = true) %}
+{% if items and items.length %}
+  {% set path = basePath %}
+  {% if path.slice(-1) != '/' %}{% set path = path + '/' %}{% endif %}
+<div class="logo-track-wrapper">
+  <div class="logo-track" style="animation-duration: {{ speed }};">
+    {% for item in items %}
+    <div class="logo-item {% if not grayscale %}no-grayscale{% endif %}">
+      <img src="{{ path }}{{ item.file }}" alt="{{ item.alt }}" loading="lazy">
+    </div>
+    {% endfor %}
+    {% for item in items %}
+    <div class="logo-item {% if not grayscale %}no-grayscale{% endif %}">
+      <img src="{{ path }}{{ item.file }}" alt="{{ item.alt }}" loading="lazy">
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endmacro %}

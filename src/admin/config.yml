@@ -1,122 +1,52 @@
-# Decap CMS Configuration — Ace Strategies Editorial Platform
 backend:
-  name: github
-  repo: aces-v/aces-vii
+  name: git-gateway
   branch: main
-  base_url: https://acestrategies.au
-  auth_endpoint: /api/auth
+  repo: kamirostami-lab/aces-vii
 
 media_folder: "src/assets/repository/images/uploads"
 public_folder: "/assets/repository/images/uploads"
 
-site_url: https://acestrategies.au
-display_url: https://acestrategies.au
-logo_url: https://acestrategies.au/assets/repository/images/ui/logo/img-logo-nav-two.png
-
-# ───────────────────────────────────────────────────────────────────
-# COLLECTIONS
-# ───────────────────────────────────────────────────────────────────
+site_url: https://aces-eleventy.netlify.app
+display_url: https://aces-eleventy.netlify.app
 
 collections:
-  # NEWS & INSIGHTS — Writers can create/edit directly
   - name: "news"
     label: "News & Insights"
-    label_singular: "News Article"
     folder: "src/content/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} — {{date | date('DD MMM YYYY')}}"
-    editor:
-      preview: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
-      - { label: "Author", name: "author", widget: "string", default: "Ace Strategies" }
-      - { label: "Featured Image", name: "image", widget: "image", required: false }
-      - { label: "Image Alt Text", name: "image_alt", widget: "string", required: false }
-      - { label: "Excerpt", name: "excerpt", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", required: false, field: { label: "Tag", name: "tag", widget: "string" } }
-      - label: "Attachments"
-        name: "attachments"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "File", name: "file", widget: "file" }
-          - { label: "Label", name: "label", widget: "string" }
-      - { label: "Featured (show on homepage)", name: "featured", widget: "boolean", default: false, required: false }
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "Author", name: "author", widget: "string", default: "Ace Strategies"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Excerpt", name: "excerpt", widget: "text"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
 
-  # CASE STUDIES
   - name: "cases"
     label: "Case Studies"
     folder: "src/content/cases"
     create: true
     slug: "{{slug}}"
-    editor:
-      preview: true
     fields:
-      - { label: "Client Name", name: "client", widget: "string" }
-      - label: "Category"
-        name: "category"
-        widget: "select"
-        options:
-          - { label: "Government Relations", value: "Government Relations" }
-          - { label: "Stakeholder Engagement", value: "Stakeholder Engagement" }
-          - { label: "Strategic Communications", value: "Strategic Communications" }
-          - { label: "Media Management", value: "Media Management" }
-          - { label: "Market Entry", value: "Market Entry" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Image Alt Text", name: "image_alt", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Quote", name: "quote", widget: "text", required: false }
-      - { label: "Quote Author", name: "quote_author", widget: "string", required: false }
-      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - {label: "Client", name: "client", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["Government Relations", "Stakeholder Engagement", "Strategic Communications", "Media Management", "Market Entry"]}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Quote", name: "quote", widget: "text", required: false}
+      - {label: "Quote Author", name: "quote_author", widget: "string", required: false}
 
-  # TEAM MEMBERS
   - name: "team"
     label: "Team Members"
-    folder: "src/_data/team"
+    folder: "src/content/team"
     create: true
-    identifier_field: "name"
-    editor:
-      preview: false
+    slug: "{{slug}}"
     fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Role", name: "role", widget: "string" }
-      - { label: "Profile Image", name: "image_profile", widget: "image" }
-      - { label: "Index Image (Card)", name: "image_index", widget: "image" }
-      - { label: "Short Bio", name: "bio_short", widget: "text" }
-      - label: "Full Bio"
-        name: "bio_paragraphs"
-        widget: "list"
-        field: { label: "Paragraph", name: "text", widget: "text" }
-      - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
-
-  # SITE SETTINGS
-  - name: "settings"
-    label: "Site Settings"
-    editor:
-      preview: false
-    files:
-      - label: "Site Configuration"
-        name: "site"
-        file: "src/_data/site.json"
-        fields:
-          - { label: "Site Title", name: "title", widget: "string" }
-          - { label: "Site Description", name: "description", widget: "text" }
-          - { label: "Site URL", name: "url", widget: "string" }
-          - { label: "Contact Email", name: "email", widget: "string" }
-          - { label: "Contact Phone", name: "phone", widget: "string" }
-          - { label: "Address", name: "address", widget: "text" }
-          - { label: "ABN", name: "abn", widget: "string" }
-          - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
-
-      - label: "Homepage Content"
-        name: "home"
-        file: "src/content/pages/home.md"
-        fields:
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "text" }
-          - { label: "CTA Text", name: "cta_text", widget: "string" }
-          - { label: "CTA URL", name: "cta_url", widget: "string" }
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Role", name: "role", widget: "string"}
+      - {label: "Profile Image", name: "image_profile", widget: "image"}
+      - {label: "Index Image", name: "image_index", widget: "image"}
+      - {label: "Short Bio", name: "bio_short", widget: "text"}
+      - {label: "Full Bio", name: "bio_paragraphs", widget: "list", field: {label: "Paragraph", name: "text", widget: "text"}}
