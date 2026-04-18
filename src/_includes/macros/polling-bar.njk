@@ -1,0 +1,81 @@
+{# 
+  Polling Bar Visualization Macro
+  @param {Object} data - Polling data object with labor_tpp, liberal_tpp, labor_primary, liberal_primary, greens_primary, sample_size, margin_of_error
+  @param {String} sourceText - Source attribution text
+  @param {String} headline - Optional headline override
+  @param {String} description - Optional description override
+#}
+{% macro pollingBar(data, sourceText = 'Source: DemosAU / Ace Strategies', headline = '', description = '') %}
+<div class="poll-vis-container">
+  <div class="poll-header-row">
+    <span style="font-size:0.9rem;font-weight:700;color:var(--navy);">Two-Party Preferred (TPP)</span>
+    <span style="font-size:0.8rem;color:#888;">{{ sourceText }}</span>
+  </div>
+  
+  <div class="poll-bar-track">
+    <div class="poll-bar-segment segment-labor" data-value="{{ data.labor_tpp }}" style="width: 0%;">
+      ALP {{ data.labor_tpp }}%
+    </div>
+    <div class="poll-bar-segment segment-liberal" data-value="{{ data.liberal_tpp }}" style="width: 0%;">
+      LIB {{ data.liberal_tpp }}%
+    </div>
+  </div>
+  
+  <div class="poll-meta">
+    <span>Labor Government</span>
+    <span>Liberal Opposition</span>
+  </div>
+  
+  <div class="poll-context">
+    <div class="poll-text">
+      {% if headline %}
+      <h3 style="font-family:var(--font-serif);font-size:1.5rem;color:var(--navy);margin-bottom:20px;">{{ headline }}</h3>
+      {% endif %}
+      
+      {% if description %}
+      <p style="margin-bottom:20px;line-height:1.7;color:var(--navy);">{{ description }}</p>
+      {% endif %}
+      
+      <p style="margin-bottom:30px;line-height:1.7;color:var(--navy);">
+        The poll shows an {{ (data.labor_tpp - 54)|abs|round(1) }}% TPP swing 
+        {% if data.labor_tpp > 54 %}to Labor{% else %}against Labor{% endif %} 
+        since the March 2022 election.
+      </p>
+      
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="/assets/repository/documents/news-and-insights/releases/20102025-sa-poll-results-demosau-ace-strategies.pdf" 
+           class="cta-button" style="min-height:40px;padding:10px 24px;font-size:0.8rem;" download>
+          Download Full Data
+        </a>
+        <a href="/assets/repository/documents/news-and-insights/reads/20102025-oped-liberal-at-the-crossroad.pdf" 
+           class="download-btn" download>
+          <span class="material-symbols-outlined">description</span> Read Analysis Op-Ed
+        </a>
+      </div>
+    </div>
+    
+    <div class="poll-stats-col">
+      <h4 style="font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy);margin-bottom:15px;">
+        Primary Vote Breakdown
+      </h4>
+      <div class="poll-stat-grid">
+        <div class="stat-box">
+          <span class="stat-num" style="color:#F4364C;">{{ data.labor_primary }}%</span>
+          <span class="stat-label">Labor</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" style="color:#4A89C1;">{{ data.liberal_primary }}%</span>
+          <span class="stat-label">Liberal</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num" style="color:#009944;">{{ data.greens_primary }}%</span>
+          <span class="stat-label">Greens</span>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:0.8rem;color:#888;font-style:italic;">
+        Sample: {{ data.sample_size }}. Margin of error: ±{{ data.margin_of_error }}%.
+      </p>
+    </div>
+  </div>
+</div>
+{% endmacro %}
