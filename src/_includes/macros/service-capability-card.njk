@@ -1,0 +1,14 @@
+{# 
+  Service Capability Card Macro (for homepage carousel)
+  @param {Object} service - Service object from capabilities.json
+#}
+{% macro card(service) %}
+<div class="service-bg-card {{ service.card_class | default('card-wide') }}">
+  <img src="{{ service.image }}" alt="{{ service.image_alt }}" class="service-img" loading="lazy">
+  <div class="service-card-content">
+    <h3>{{ service.title }}</h3>
+    <p>{{ service.body }}</p>
+    <a href="{{ service.url }}" class="service-link-btn">Learn more</a>
+  </div>
+</div>
+{% endmacro %}
