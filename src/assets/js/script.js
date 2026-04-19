@@ -454,7 +454,7 @@ function initThemeToggle() {
 
   const savedTheme = localStorage.getItem(STORAGE_KEY);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const defaultTheme = savedTheme || (prefersDark ? 'dark' : 'dark');
+  const defaultTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
   body.classList.toggle('theme-light', defaultTheme === 'light');
   body.classList.toggle('theme-dark', defaultTheme === 'dark');
@@ -502,7 +502,7 @@ function initIAAThemeToggle() {
 
   const savedTheme = localStorage.getItem(STORAGE_KEY);
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const defaultTheme = savedTheme || (prefersDark ? 'dark' : 'dark');
+  const defaultTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
   body.classList.toggle('theme-light', defaultTheme === 'light');
   body.classList.toggle('theme-dark', defaultTheme === 'dark');
