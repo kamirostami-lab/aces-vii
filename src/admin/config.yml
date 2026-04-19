@@ -6,8 +6,8 @@ backend:
 media_folder: "src/assets/repository/images/uploads"
 public_folder: "/assets/repository/images/uploads"
 
-site_url: https://aces-eleventy.netlify.app
-display_url: https://aces-eleventy.netlify.app
+site_url: https://acestrategies.au
+display_url: https://acestrategies.au
 
 collections:
   - name: "news"
