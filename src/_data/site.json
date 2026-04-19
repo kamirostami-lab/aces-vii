@@ -10,42 +10,6 @@
   "linkedin": "https://www.linkedin.com/company/acestrategies/",
   "copyright_year": 2026,
 
-  "nav_items": [
-    { "label": "Home", "url": "/" },
-    { "label": "About", "url": "/about/" },
-    { "label": "Capabilities", "url": "/capabilities/" },
-    { "label": "Team", "url": "/team/" },
-    { "label": "Cases", "url": "/cases/" },
-    { "label": "News", "url": "/news/" },
-    { "label": "Alliance", "url": "/alliance/" },
-    { "label": "Contact", "url": "/contact/" }
-  ],
-
-  "footer_capabilities": [
-    { "label": "Government Relations", "url": "/services/public-affairs/" },
-    { "label": "Stakeholder Engagement", "url": "/services/stakeholder-engagement/" },
-    { "label": "Strategic Communications", "url": "/services/strategic-communications/" },
-    { "label": "Media Management", "url": "/services/media-management/" },
-    { "label": "Research and Polling", "url": "/services/polling/" },
-    { "label": "Market Entry & Growth", "url": "/services/new-market-entry/" }
-  ],
-
-  "footer_explore": [
-    { "label": "Home", "url": "/" },
-    { "label": "About Us", "url": "/about/" },
-    { "label": "Capabilities", "url": "/capabilities/" },
-    { "label": "Our Team", "url": "/team/" },
-    { "label": "Cases", "url": "/cases/" },
-    { "label": "News", "url": "/news/" },
-    { "label": "Invest Australia Alliance", "url": "/alliance/" }
-  ],
-
-  "footer_legal": [
-    { "label": "Code of Conduct", "url": "/legal/code-of-conduct/" },
-    { "label": "Privacy Policy", "url": "/legal/privacy/" },
-    { "label": "Terms of Use", "url": "/legal/terms/" }
-  ],
-
   "social": {
     "linkedin": "https://www.linkedin.com/company/acestrategies/"
   }
