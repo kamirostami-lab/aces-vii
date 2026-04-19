@@ -20,19 +20,15 @@ permalink: /team/index.html
 
 <section class="team-section" data-theme="light">
   <div class="team-container">
-    {% for member in team %}
-    <div class="profile-block" id="{{ member.id }}">
+    {% for member in collections.teamMembers %}
+    <div class="profile-block" id="{{ member.data.id }}">
       <div class="profile-image-wrapper">
-        <img src="{{ member.image_profile }}" alt="{{ member.image_alt_profile }}" class="profile-img">
+        <img src="{{ member.data.image_profile }}" alt="{{ member.data.image_alt_profile }}" class="profile-img">
       </div>
       <div class="profile-content">
-        <h2>{{ member.name }}</h2>
-        <span class="profile-role">{{ member.role }}</span>
-        <div class="profile-bio">
-          {% for para in member.bio_paragraphs %}
-          <p>{{ para }}</p>
-          {% endfor %}
-        </div>
+        <h2>{{ member.data.name }}</h2>
+        <span class="profile-role">{{ member.data.role }}</span>
+        <div class="profile-bio">{{ member.content | safe }}</div>
       </div>
     </div>
     {% endfor %}

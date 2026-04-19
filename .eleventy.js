@@ -159,35 +159,29 @@ module.exports = function(eleventyConfig) {
   // COLLECTIONS — Custom content collections
   // =========================================================================
 
-  // News collection (sorted newest first)
   eleventyConfig.addCollection("news", function(collectionApi) {
     return collectionApi
         .getFilteredByGlob("src/content/news/*.md")
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   });
 
-  // Case studies collection (sorted newest first)
   eleventyConfig.addCollection("cases", function(collectionApi) {
     return collectionApi
-        .getFilteredByGlob("src/content/cases/*.md")
-        .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+        .getFilteredByGlob("src/content/cases/*.md");
   });
 
-  // Newsletters collection (sorted newest first)
   eleventyConfig.addCollection("newsletters", function(collectionApi) {
     return collectionApi
         .getFilteredByGlob("src/content/newsletters/*.md")
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   });
 
-  // Team collection from JSON data (for CMS integration)
   eleventyConfig.addCollection("teamMembers", function(collectionApi) {
     return collectionApi
         .getFilteredByGlob("src/content/team/*.md")
         .sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
   });
 
-  // Featured news only
   eleventyConfig.addCollection("featuredNews", function(collectionApi) {
     return collectionApi
         .getFilteredByGlob("src/content/news/*.md")
@@ -195,7 +189,6 @@ module.exports = function(eleventyConfig) {
         .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   });
 
-  // All services (combines data and markdown)
   eleventyConfig.addCollection("services", function(collectionApi) {
     return collectionApi
         .getFilteredByGlob("src/content/services/*.md")
