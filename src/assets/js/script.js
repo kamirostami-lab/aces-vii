@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initSearch();
   initIAAThemeToggle();
+  initNewsletterSpamProtection();
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -343,6 +344,7 @@ function setupCarousel(cfg) {
   // Drag to scroll
   let dragStartX = null;
   let dragging = false;
+  let wasDragging = false;
   let startScroll;
 
   viewport.addEventListener('mousedown', (e) => {
@@ -361,14 +363,15 @@ function setupCarousel(cfg) {
   });
 
   window.addEventListener('mouseup', () => {
+    wasDragging = dragging;
     dragStartX = null;
+    dragging = false;
     viewport.style.cursor = '';
     viewport.style.userSelect = '';
-    setTimeout(() => { dragging = false; }, 50);
   });
 
   viewport.addEventListener('click', (e) => {
-    if (dragging) e.stopPropagation();
+    if (wasDragging) { wasDragging = false; e.stopPropagation(); }
   }, true);
 }
 
@@ -690,8 +693,6 @@ function initSearch() {
       } else if (items.length > 0) {
         items[0].click();
       }
-    } else if (e.key === 'Escape') {
-      closeModal();
     }
   });
 
@@ -706,5 +707,32 @@ function initSearch() {
       e.preventDefault();
       openModal();
     }
+  });
+}
+
+
+/* =========================================
+   15. NEWSLETTER SPAM PROTECTION
+   ========================================= */
+function initNewsletterSpamProtection() {
+  const forms = document.querySelectorAll('form[action*="convertkit.com"]');
+  if (!forms.length) return;
+
+  const pageLoadTime = Date.now();
+
+  forms.forEach(form => {
+    const honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = '_gotcha';
+    honeypot.setAttribute('style', 'display:none;position:absolute;left:-9999px;');
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    form.appendChild(honeypot);
+
+    form.addEventListener('submit', (e) => {
+      if (honeypot.value || Date.now() - pageLoadTime < 3000) {
+        e.preventDefault();
+      }
+    });
   });
 }

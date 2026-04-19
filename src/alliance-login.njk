@@ -1,0 +1,72 @@
+---
+layout: iaa-base.njk
+title: Alliance Member Login
+description: Secure login portal for Invest Australia Alliance members.
+permalink: /alliance/login/index.html
+---
+
+<main class="iaa-canvas" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px;">
+  <div style="width: 100%; max-width: 440px;">
+
+    {# -- Email form (default view) -- #}
+    <div id="login-view">
+      <span class="iaa-superhead">Secure Access</span>
+      <h1 class="iaa-display-title" style="font-size: 2.2rem; margin: 12px 0 8px;">Member Login</h1>
+      <p class="iaa-lead-text" style="margin-bottom: 36px; font-size: 1rem;">Enter your registered email address to receive a secure, one-time login link.</p>
+
+      <div id="error-box" style="display:none; background:rgba(220,38,38,0.08); border:1px solid rgba(220,38,38,0.25); border-radius:4px; padding:12px 16px; margin-bottom:20px;">
+        <p id="error-text" style="margin:0; font-size:0.9rem; color:#dc2626;"></p>
+      </div>
+
+      <form method="POST" action="/alliance/login/">
+        <input type="text" name="_gotcha" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off">
+
+        <div style="margin-bottom: 16px;">
+          <label for="email" style="display:block; font-size:0.8rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; opacity:0.6; margin-bottom:8px;">Email Address</label>
+          <input type="email" name="email" id="email" required autocomplete="email"
+            style="width:100%; padding:12px 16px; background:rgba(255,255,255,0.05); border:1px solid var(--iaa-border); border-radius:4px; color:inherit; font-size:1rem; font-family:inherit; box-sizing:border-box; transition:border-color 0.2s;"
+            placeholder="you@organisation.com">
+        </div>
+
+        <button type="submit" class="btn-iaa-primary" style="width:100%; justify-content:center; padding:14px 24px; font-size:1rem;">
+          Send Login Link
+        </button>
+      </form>
+
+      <p style="margin-top:28px; font-size:0.82rem; opacity:0.5; text-align:center; line-height:1.5;">
+        Not yet a member?
+        <a href="/alliance/" class="btn-iaa-text" style="font-size:0.82rem;">Learn about the Alliance &rarr;</a>
+      </p>
+    </div>
+
+    {# -- Sent confirmation view -- #}
+    <div id="sent-view" style="display:none; text-align:center;">
+      <span class="material-symbols-outlined" style="font-size:3.5rem; color:var(--iaa-gold-dark); display:block; margin-bottom:20px;">mark_email_read</span>
+      <h1 class="iaa-display-title" style="font-size:2rem; margin-bottom:12px;">Check your inbox</h1>
+      <p class="iaa-lead-text" style="font-size:1rem; margin-bottom:12px;">If your email is registered with the Alliance, a login link has been sent. It expires in 15 minutes.</p>
+      <p style="font-size:0.85rem; opacity:0.5;">Can't find it? Check your spam folder.</p>
+      <button onclick="document.getElementById('sent-view').style.display='none';document.getElementById('login-view').style.display='block';"
+        class="btn-iaa-text" style="margin-top:24px; font-size:0.85rem;">
+        Try a different address
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<script>
+(function () {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('sent') === '1') {
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('sent-view').style.display = 'block';
+    return;
+  }
+  const errors = { email: 'Please enter a valid email address.', expired: 'This login link has expired — please request a new one.', invalid: 'This link is no longer valid — please request a new one.' };
+  const msg = errors[p.get('error')];
+  if (msg) {
+    document.getElementById('error-text').textContent = msg;
+    document.getElementById('error-box').style.display = 'block';
+  }
+}());
+</script>

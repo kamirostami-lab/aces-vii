@@ -10,15 +10,6 @@
   to = "/admin/index.html"
   status = 200
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[[redirects]]
-  from = "/alliance/members/*"
-  to = "/.netlify/functions/member-auth"
-  status = 200
 
 [[headers]]
   for = "/*"
