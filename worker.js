@@ -227,6 +227,55 @@ async function handleOAuthCallback(request, env) {
 }
 
 // ---------------------------------------------------------------------------
+// Route: GET /api/polling.json — live polling data from Google Sheets
+// ---------------------------------------------------------------------------
+
+async function handlePollingApi(request, env) {
+  const apiHeaders = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'https://acestrategies.au',
+    'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600',
+  };
+
+  const { searchParams } = new URL(request.url);
+  const sheetId = env.GOOGLE_SHEETS_ID;
+  const apiKey = env.GOOGLE_SHEETS_API_KEY;
+
+  if (!sheetId || !apiKey) {
+    return new Response(JSON.stringify({ error: 'Service misconfigured' }), { status: 503, headers: apiHeaders });
+  }
+
+  try {
+    const range = searchParams.get('state') === 'federal' ? 'Federal Polling!A2:H2' : 'SA Polling!A2:H2';
+    const sheetRes = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(range)}?key=${apiKey}`
+    );
+    const data = await sheetRes.json();
+    const values = data.values?.[0] || [];
+
+    const pollingData = {
+      state: searchParams.get('state') === 'federal' ? 'federal' : 'sa',
+      labor_tpp: parseFloat(values[0]) || 66,
+      liberal_tpp: parseFloat(values[1]) || 34,
+      labor_primary: parseFloat(values[2]) || 47,
+      liberal_primary: parseFloat(values[3]) || 21,
+      greens_primary: parseFloat(values[4]) || 13,
+      sample_size: parseInt(values[5]) || 1006,
+      margin_of_error: parseFloat(values[6]) || 3.9,
+      last_updated: values[7] || new Date().toISOString().split('T')[0],
+      _cached_at: new Date().toISOString(),
+    };
+
+    return new Response(JSON.stringify(pollingData, null, 2), { headers: apiHeaders });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: 'Failed to fetch polling data', message: err.message }), {
+      status: 500,
+      headers: apiHeaders,
+    });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Route: GET /alliance/logout/ — clear session cookie
 // ---------------------------------------------------------------------------
 
@@ -257,6 +306,9 @@ export default {
     if (pathname === '/alliance/logout' || pathname === '/alliance/logout/') return handleLogout(request);
     if (pathname === '/alliance/verify' || pathname === '/alliance/verify/') return handleVerify(request, env);
     if ((pathname === '/alliance/login' || pathname === '/alliance/login/') && request.method === 'POST') return handleLoginPost(request, env);
+
+    // Live polling data
+    if (pathname === '/api/polling.json') return handlePollingApi(request, env);
 
     // GitHub OAuth for Decap CMS
     if (request.method === 'OPTIONS') return handleCorsPrelight();

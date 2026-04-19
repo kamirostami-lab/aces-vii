@@ -20,10 +20,10 @@ permalink: /news/index.html
     <div class="section-divider"></div>
   </div>
   <div class="poll-vis-container">
-    <div class="poll-header-row"><span>Two-Party Preferred</span><span>Source: DemosAU / Ace Strategies{% if polling._fallback %} — <em style="color:var(--gold);font-size:0.8em;">static data</em>{% endif %}</span></div>
+    <div class="poll-header-row"><span>Two-Party Preferred</span><span>Source: DemosAU / Ace Strategies<span id="poll-fallback-badge">{% if polling._fallback %} — <em style="color:var(--gold);font-size:0.8em;">static data</em>{% endif %}</span></span></div>
     <div class="poll-bar-track">
-      <div class="poll-bar-segment segment-labor" data-value="{{ polling.south_australia.labor_tpp }}" style="width: 0%;">ALP {{ polling.south_australia.labor_tpp }}%</div>
-      <div class="poll-bar-segment segment-liberal" data-value="{{ polling.south_australia.liberal_tpp }}" style="width: 0%;">LIB {{ polling.south_australia.liberal_tpp }}%</div>
+      <div id="poll-bar-labor" class="poll-bar-segment segment-labor" data-value="{{ polling.south_australia.labor_tpp }}" style="width: 0%;">ALP {{ polling.south_australia.labor_tpp }}%</div>
+      <div id="poll-bar-liberal" class="poll-bar-segment segment-liberal" data-value="{{ polling.south_australia.liberal_tpp }}" style="width: 0%;">LIB {{ polling.south_australia.liberal_tpp }}%</div>
     </div>
   </div>
 </section>
@@ -34,3 +34,22 @@ permalink: /news/index.html
     <a href="/contact/" class="cta-button">Contact us today</a>
   </div>
 </section>
+
+<script>
+(function () {
+  fetch('/api/polling.json')
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+    .then(function (d) {
+      var labor = document.getElementById('poll-bar-labor');
+      var liberal = document.getElementById('poll-bar-liberal');
+      var badge = document.getElementById('poll-fallback-badge');
+      if (!labor || !liberal) return;
+      labor.dataset.value = d.labor_tpp;
+      labor.textContent = 'ALP ' + d.labor_tpp + '%';
+      liberal.dataset.value = d.liberal_tpp;
+      liberal.textContent = 'LIB ' + d.liberal_tpp + '%';
+      if (badge) badge.innerHTML = '';
+    })
+    .catch(function () {});
+}());
+</script>
