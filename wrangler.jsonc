@@ -12,24 +12,23 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
-  ],
-
-  // KV namespaces — create with:
-  //   wrangler kv namespace create MEMBER_EMAILS
-  //   wrangler kv namespace create MAGIC_TOKENS
-  // Then replace the placeholder IDs below with the output IDs.
-  "kv_namespaces": [
-    {
-      "binding": "MEMBER_EMAILS",
-      "id": "REPLACE_WITH_MEMBER_EMAILS_KV_ID"
-    },
-    {
-      "binding": "MAGIC_TOKENS",
-      "id": "REPLACE_WITH_MAGIC_TOKENS_KV_ID"
-    }
   ]
 
-  // Secrets — set via CLI (never put values in this file):
+  // ---- Member auth KV namespaces ----
+  // Run the following to create, then add the returned IDs here:
+  //   wrangler kv namespace create MEMBER_EMAILS
+  //   wrangler kv namespace create MAGIC_TOKENS
+  //
+  // Then uncomment and populate:
+  // "kv_namespaces": [
+  //   { "binding": "MEMBER_EMAILS", "id": "<id from above>" },
+  //   { "binding": "MAGIC_TOKENS",  "id": "<id from above>" }
+  // ]
+
+  // ---- Secrets ----
+  // Set via CLI — never commit values:
   //   wrangler secret put SESSION_SECRET
   //   wrangler secret put RESEND_API_KEY
+  //   wrangler secret put GITHUB_CLIENT_ID
+  //   wrangler secret put GITHUB_CLIENT_SECRET
 }

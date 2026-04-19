@@ -67,11 +67,19 @@ function redirect(url) {
   return Response.redirect(url, 302);
 }
 
+function kvNotConfigured() {
+  return new Response(
+    'Member auth KV namespaces not yet configured. See wrangler.jsonc for setup instructions.',
+    { status: 503, headers: { 'Content-Type': 'text/plain' } }
+  );
+}
+
 // ---------------------------------------------------------------------------
 // Route: GET /alliance/members/* — check session cookie
 // ---------------------------------------------------------------------------
 
 async function handleMembersRoute(request, env) {
+  if (!env.MEMBER_EMAILS) return kvNotConfigured();
   const token = getCookie(request, SESSION_COOKIE);
   if (token) {
     const email = await verifySessionToken(token, env.SESSION_SECRET);
@@ -87,6 +95,7 @@ async function handleMembersRoute(request, env) {
 // ---------------------------------------------------------------------------
 
 async function handleLoginPost(request, env) {
+  if (!env.MEMBER_EMAILS || !env.MAGIC_TOKENS) return kvNotConfigured();
   let email, honeypot;
   try {
     const form = await request.formData();
@@ -142,6 +151,7 @@ async function handleLoginPost(request, env) {
 // ---------------------------------------------------------------------------
 
 async function handleVerify(request, env) {
+  if (!env.MAGIC_TOKENS) return kvNotConfigured();
   const token = new URL(request.url).searchParams.get('token') || '';
   if (!token) return redirect(new URL('/alliance/login/?error=invalid', request.url).href);
 
