@@ -5,7 +5,7 @@
   @param {String} headline - Optional headline override
   @param {String} description - Optional description override
 #}
-{% macro pollingBar(data, sourceText = 'Source: DemosAU / Ace Strategies', headline = '', description = '') %}
+{% macro pollingBar(data, sourceText = 'Source: DemosAU / Ace Strategies', headline = '', description = '', baselineTpp = 0, electionRef = '') %}
 <div class="poll-vis-container">
   <div class="poll-header-row">
     <span style="font-size:0.9rem;font-weight:700;color:var(--navy);">Two-Party Preferred (TPP)</span>
@@ -36,11 +36,13 @@
       <p style="margin-bottom:20px;line-height:1.7;color:var(--navy);">{{ description }}</p>
       {% endif %}
       
+      {% if baselineTpp and electionRef %}
       <p style="margin-bottom:30px;line-height:1.7;color:var(--navy);">
-        The poll shows an {{ (data.labor_tpp - 54)|abs|round(1) }}% TPP swing 
-        {% if data.labor_tpp > 54 %}to Labor{% else %}against Labor{% endif %} 
-        since the March 2022 election.
+        The poll shows an {{ (data.labor_tpp - baselineTpp)|abs|round(1) }}% TPP swing
+        {% if data.labor_tpp > baselineTpp %}to Labor{% else %}against Labor{% endif %}
+        since {{ electionRef }}.
       </p>
+      {% endif %}
       
       <div style="display:flex;gap:16px;flex-wrap:wrap;">
         <a href="/assets/repository/documents/news-and-insights/releases/20102025-sa-poll-results-demosau-ace-strategies.pdf" 

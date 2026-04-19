@@ -344,6 +344,7 @@ function setupCarousel(cfg) {
   // Drag to scroll
   let dragStartX = null;
   let dragging = false;
+  let wasDragging = false;
   let startScroll;
 
   viewport.addEventListener('mousedown', (e) => {
@@ -362,14 +363,15 @@ function setupCarousel(cfg) {
   });
 
   window.addEventListener('mouseup', () => {
+    wasDragging = dragging;
     dragStartX = null;
+    dragging = false;
     viewport.style.cursor = '';
     viewport.style.userSelect = '';
-    setTimeout(() => { dragging = false; }, 50);
   });
 
   viewport.addEventListener('click', (e) => {
-    if (dragging) e.stopPropagation();
+    if (wasDragging) { wasDragging = false; e.stopPropagation(); }
   }, true);
 }
 
@@ -691,8 +693,6 @@ function initSearch() {
       } else if (items.length > 0) {
         items[0].click();
       }
-    } else if (e.key === 'Escape') {
-      closeModal();
     }
   });
 

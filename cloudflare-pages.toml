@@ -1,3 +1,8 @@
+# DEPRECATED — Cloudflare Pages deployment config.
+# The canonical deployment is now Cloudflare Workers Assets via wrangler.jsonc.
+# All API routes (OAuth, member auth) are handled by worker.js.
+# This file is retained only as a reference for Cloudflare Pages fallback.
+
 [build]
   command = "npm run build"
   publish = "_site"
@@ -8,9 +13,4 @@
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/api/*"
-  to = "/functions/:splat"
   status = 200

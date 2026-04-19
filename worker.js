@@ -167,6 +167,56 @@ async function handleVerify(request, env) {
 }
 
 // ---------------------------------------------------------------------------
+// Routes: /api/auth — GitHub OAuth for Decap CMS
+// ---------------------------------------------------------------------------
+
+function handleCorsPrelight() {
+  return new Response(null, {
+    headers: {
+      'Access-Control-Allow-Origin': 'https://acestrategies.au',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
+
+function handleOAuthStart(request, env) {
+  const origin = new URL(request.url).origin;
+  const redirectUri = `${origin}/api/auth/callback`;
+  const githubUrl = `https://github.com/login/oauth/authorize?client_id=${env.GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo,user`;
+  return Response.redirect(githubUrl, 302);
+}
+
+async function handleOAuthCallback(request, env) {
+  const code = new URL(request.url).searchParams.get('code');
+  if (!code) return new Response('Missing code parameter', { status: 400 });
+
+  try {
+    const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        client_id: env.GITHUB_CLIENT_ID,
+        client_secret: env.GITHUB_CLIENT_SECRET,
+        code,
+      }),
+    });
+    const tokenData = await tokenResponse.json();
+    if (tokenData.error) return new Response(`GitHub error: ${tokenData.error_description}`, { status: 400 });
+
+    const origin = new URL(request.url).origin;
+    const html = `<!DOCTYPE html><html><head><title>Authentication Complete</title>
+<style>body{font-family:-apple-system,sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#1a2b45;color:white}.box{text-align:center;padding:40px;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid #C9A961}h1{color:#C9A961;margin-bottom:16px}p{opacity:.8}</style>
+</head><body><div class="box"><h1>Authentication Successful</h1><p>You may now close this window and return to the CMS.</p></div>
+<script>(function(){var t=${JSON.stringify(tokenData.access_token)};window.opener.postMessage({provider:'github',token:t},${JSON.stringify(origin)});}());</script>
+</body></html>`;
+    return new Response(html, { headers: { 'Content-Type': 'text/html' } });
+  } catch (err) {
+    return new Response(`Error: ${err.message}`, { status: 500 });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Route: GET /alliance/logout/ — clear session cookie
 // ---------------------------------------------------------------------------
 
@@ -195,10 +245,13 @@ export default {
 
     if (pathname.startsWith('/alliance/members')) return handleMembersRoute(request, env);
     if (pathname === '/alliance/logout' || pathname === '/alliance/logout/') return handleLogout(request);
-    if ((pathname === '/alliance/verify' || pathname === '/alliance/verify/')) return handleVerify(request, env);
-    if ((pathname === '/alliance/login' || pathname === '/alliance/login/') && request.method === 'POST') {
-      return handleLoginPost(request, env);
-    }
+    if (pathname === '/alliance/verify' || pathname === '/alliance/verify/') return handleVerify(request, env);
+    if ((pathname === '/alliance/login' || pathname === '/alliance/login/') && request.method === 'POST') return handleLoginPost(request, env);
+
+    // GitHub OAuth for Decap CMS
+    if (request.method === 'OPTIONS') return handleCorsPrelight();
+    if (pathname === '/api/auth' || pathname === '/api/auth/') return handleOAuthStart(request, env);
+    if (pathname === '/api/auth/callback') return handleOAuthCallback(request, env);
 
     return env.ASSETS.fetch(request);
   },
