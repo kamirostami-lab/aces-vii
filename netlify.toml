@@ -15,10 +15,6 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
-[[redirects]]
-  from = "/alliance/members/*"
-  to = "/.netlify/functions/member-auth"
-  status = 200
 
 [[headers]]
   for = "/*"

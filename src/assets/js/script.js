@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initSearch();
   initIAAThemeToggle();
+  initNewsletterSpamProtection();
 
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -706,5 +707,32 @@ function initSearch() {
       e.preventDefault();
       openModal();
     }
+  });
+}
+
+
+/* =========================================
+   15. NEWSLETTER SPAM PROTECTION
+   ========================================= */
+function initNewsletterSpamProtection() {
+  const forms = document.querySelectorAll('form[action*="convertkit.com"]');
+  if (!forms.length) return;
+
+  const pageLoadTime = Date.now();
+
+  forms.forEach(form => {
+    const honeypot = document.createElement('input');
+    honeypot.type = 'text';
+    honeypot.name = '_gotcha';
+    honeypot.setAttribute('style', 'display:none;position:absolute;left:-9999px;');
+    honeypot.tabIndex = -1;
+    honeypot.autocomplete = 'off';
+    form.appendChild(honeypot);
+
+    form.addEventListener('submit', (e) => {
+      if (honeypot.value || Date.now() - pageLoadTime < 3000) {
+        e.preventDefault();
+      }
+    });
   });
 }

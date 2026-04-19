@@ -2,13 +2,34 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aces-vii",
   "compatibility_date": "2026-04-17",
+  "main": "worker.js",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "_site"
+    "directory": "_site",
+    "binding": "ASSETS"
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+
+  // KV namespaces — create with:
+  //   wrangler kv namespace create MEMBER_EMAILS
+  //   wrangler kv namespace create MAGIC_TOKENS
+  // Then replace the placeholder IDs below with the output IDs.
+  "kv_namespaces": [
+    {
+      "binding": "MEMBER_EMAILS",
+      "id": "REPLACE_WITH_MEMBER_EMAILS_KV_ID"
+    },
+    {
+      "binding": "MAGIC_TOKENS",
+      "id": "REPLACE_WITH_MAGIC_TOKENS_KV_ID"
+    }
   ]
+
+  // Secrets — set via CLI (never put values in this file):
+  //   wrangler secret put SESSION_SECRET
+  //   wrangler secret put RESEND_API_KEY
 }
