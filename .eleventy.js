@@ -8,9 +8,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/_redirects");
 
-  // Copy robots.txt and favicon if they exist
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "/robots.txt" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "/favicon.ico" });
+  eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "/favicon.svg" });
 
   // =========================================================================
   // WATCH TARGETS — Additional files to watch for changes
