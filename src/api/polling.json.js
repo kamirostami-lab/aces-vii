@@ -5,23 +5,24 @@
 export default async (request, context) => {
     const url = new URL(request.url);
 
-    // Allow CORS for external access
     const headers = {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': 'https://acestrategies.au',
         'Cache-Control': 'public, max-age=300, stale-while-revalidate=3600'
     };
 
-    // Handle preflight
     if (request.method === 'OPTIONS') {
         return new Response(null, { headers });
     }
 
     try {
-        // Fetch from Google Sheets directly (edge-side)
-        // Uses environment variables set in Netlify/Cloudflare
         const sheetId = context.env.GOOGLE_SHEETS_ID;
         const apiKey = context.env.GOOGLE_SHEETS_API_KEY;
+
+        if (!sheetId || !apiKey) {
+            console.error('Missing GOOGLE_SHEETS_ID or GOOGLE_SHEETS_API_KEY environment variables');
+            return new Response(JSON.stringify({ error: 'Service misconfigured' }), { status: 503, headers });
+        }
         const range = url.searchParams.get('state') === 'federal'
             ? 'Federal Polling!A2:H2'
             : 'SA Polling!A2:H2';
