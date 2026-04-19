@@ -6,8 +6,8 @@ backend:
 media_folder: "src/assets/repository/images/uploads"
 public_folder: "/assets/repository/images/uploads"
 
-site_url: https://aces-eleventy.netlify.app
-display_url: https://aces-eleventy.netlify.app
+site_url: https://acestrategies.au
+display_url: https://acestrategies.au
 
 collections:
   - name: "news"
@@ -19,10 +19,13 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD"}
       - {label: "Author", name: "author", widget: "string", default: "Ace Strategies"}
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Excerpt", name: "excerpt", widget: "text"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - {label: "Image Alt Text", name: "image_alt", widget: "string", required: false}
+      - {label: "PDF Download URL", name: "pdf_url", widget: "string", required: false}
+      - {label: "PDF Download Label", name: "pdf_label", widget: "string", required: false}
       - {label: "Featured", name: "featured", widget: "boolean", default: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "cases"
     label: "Case Studies"
@@ -31,22 +34,27 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Client", name: "client", widget: "string"}
-      - {label: "Category", name: "category", widget: "select", options: ["Government Relations", "Stakeholder Engagement", "Strategic Communications", "Media Management", "Market Entry"]}
+      - {label: "Category", name: "category", widget: "select", options: ["Public Affairs & Government Engagement", "Strategic Communications", "Stakeholder Engagement", "New Market Entry", "Media Issues Management"]}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Image", name: "image", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Image Alt Text", name: "image_alt", widget: "string"}
       - {label: "Quote", name: "quote", widget: "text", required: false}
       - {label: "Quote Author", name: "quote_author", widget: "string", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "team"
     label: "Team Members"
     folder: "src/content/team"
     create: true
-    slug: "{{slug}}"
+    slug: "{{order}}-{{slug}}"
     fields:
+      - {label: "ID (URL anchor)", name: "id", widget: "string"}
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Role", name: "role", widget: "string"}
-      - {label: "Profile Image", name: "image_profile", widget: "image"}
+      - {label: "Order", name: "order", widget: "number", default: 99}
       - {label: "Index Image", name: "image_index", widget: "image"}
+      - {label: "Profile Image", name: "image_profile", widget: "image"}
+      - {label: "Index Image Alt", name: "image_alt_index", widget: "string"}
+      - {label: "Profile Image Alt", name: "image_alt_profile", widget: "string"}
       - {label: "Short Bio", name: "bio_short", widget: "text"}
-      - {label: "Full Bio", name: "bio_paragraphs", widget: "list", field: {label: "Paragraph", name: "text", widget: "text"}}
+      - {label: "Full Bio", name: "body", widget: "markdown"}

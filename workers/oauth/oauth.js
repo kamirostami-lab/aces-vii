@@ -70,8 +70,8 @@ export default {
   </div>
   <script>
     (function() {
-      var token = '${tokenData.access_token}';
-      window.opener.postMessage({ provider: 'github', token: token }, '*');
+      var token = ${JSON.stringify(tokenData.access_token)};
+      window.opener.postMessage({ provider: 'github', token: token }, 'https://acestrategies.au');
     })();
   </script>
 </body>

@@ -110,19 +110,19 @@ permalink: /index.html
     <div class="section-divider"></div>
   </div>
   <div class="team-grid">
-    {% for member in team %}
+    {% for member in collections.teamMembers %}
     <div class="team-card">
       <div class="team-card-inner">
         <div class="team-card-front">
-          <img src="{{ member.image_index }}" alt="{{ member.image_alt_index }}" loading="lazy">
+          <img src="{{ member.data.image_index }}" alt="{{ member.data.image_alt_index }}" loading="lazy">
           <div class="team-info-overlay">
-            <h3 class="team-name">{{ member.name }}</h3>
-            <div class="team-role">{{ member.role }}</div>
+            <h3 class="team-name">{{ member.data.name }}</h3>
+            <div class="team-role">{{ member.data.role }}</div>
           </div>
         </div>
         <div class="team-card-back">
-          <p class="team-bio">{{ member.bio_short }}</p>
-          <a href="/team/#{{ member.id }}" class="team-social-btn">Read more</a>
+          <p class="team-bio">{{ member.data.bio_short }}</p>
+          <a href="/team/#{{ member.data.id }}" class="team-social-btn">Read more</a>
         </div>
       </div>
     </div>
@@ -143,11 +143,11 @@ permalink: /index.html
     </button>
     <div class="news-carousel-wrapper">
       <div class="news-carousel-track" id="news-carousel">
-        {% for article in news %}
+        {% for article in collections.news %}
         <div class="news-text-card">
-          <div class="news-date">{{ article.date | dateFormat }}</div>
-          <h3 class="news-card-title">{{ article.title }}</h3>
-          <p class="news-snippet">{{ article.excerpt }}</p>
+          <div class="news-date">{{ article.data.date | dateFormat }}</div>
+          <h3 class="news-card-title">{{ article.data.title }}</h3>
+          <p class="news-snippet">{{ article.data.excerpt }}</p>
           <a href="/news/" class="news-read-link">Read more</a>
         </div>
         {% endfor %}
