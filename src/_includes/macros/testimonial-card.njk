@@ -1,0 +1,17 @@
+{% macro card(quote, author, role, isCaseStudy = false) %}
+{% if isCaseStudy %}
+<div class="case-quote-box">
+  <blockquote class="case-quote">&ldquo;{{ quote | safe }}&rdquo;</blockquote>
+  <cite class="case-author">{{ author }} — {{ role }}</cite>
+</div>
+{% else %}
+<div class="testimonial-card">
+  <div class="quote-icon">&ldquo;</div>
+  <blockquote class="testimonial-quote">{{ quote | safe }}</blockquote>
+  <div class="testimonial-author">
+    <cite class="author-name">{{ author }}</cite>
+    <span class="author-role">{{ role }}</span>
+  </div>
+</div>
+{% endif %}
+{% endmacro %}

@@ -5,6 +5,10 @@ description: Latest polling data, strategic analysis, and corporate announcement
 active_nav: /news/
 permalink: /news/index.html
 ---
+{% import "macros/polling-bar.njk" as pollingMacro %}
+{% import "macros/news-article-card.njk" as newsCard %}
+{% import "macros/newsletter-signup.njk" as newsletter %}
+{% import "macros/cta-section.njk" as cta %}
 
 <section class="news-hero" data-theme="dark">
   <div class="news-hero-content">
@@ -19,21 +23,29 @@ permalink: /news/index.html
     <h2 class="section-title">South Australia: The Political Pulse</h2>
     <div class="section-divider"></div>
   </div>
-  <div class="poll-vis-container">
-    <div class="poll-header-row"><span>Two-Party Preferred</span><span>Source: DemosAU / Ace Strategies<span id="poll-fallback-badge">{% if polling._fallback %} — <em style="color:var(--gold);font-size:0.8em;">static data</em>{% endif %}</span></span></div>
-    <div class="poll-bar-track">
-      <div id="poll-bar-labor" class="poll-bar-segment segment-labor" data-value="{{ polling.south_australia.labor_tpp }}" style="width: 0%;">ALP {{ polling.south_australia.labor_tpp }}%</div>
-      <div id="poll-bar-liberal" class="poll-bar-segment segment-liberal" data-value="{{ polling.south_australia.liberal_tpp }}" style="width: 0%;">LIB {{ polling.south_australia.liberal_tpp }}%</div>
-    </div>
+  {{ pollingMacro.pollingBar(polling.south_australia, 'Source: DemosAU / Ace Strategies', polling._fallback) }}
+</section>
+
+<section class="news-articles-section" data-theme="light">
+  <div class="section-header">
+    <span class="section-label">Latest Releases</span>
+    <h2 class="section-title">News &amp; Announcements</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="news-grid" style="max-width:var(--max-width);margin:0 auto;padding:0 40px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px;">
+    {% for item in collections.news %}
+    {{ newsCard.card(item, 'grid') }}
+    {% endfor %}
   </div>
 </section>
 
-<section class="cta-section" data-theme="dark">
-  <div class="cta-content">
-    <h2 class="cta-title">Stay ahead with <span class="highlight">Ace intelligence.</span></h2>
-    <a href="/contact/" class="cta-button">Contact us today</a>
+<section class="newsletter-section" data-theme="light" style="background:#fafafa;padding:60px 20px;">
+  <div style="max-width:640px;margin:0 auto;text-align:center;">
+    {{ newsletter.signup('Stay ahead of the intelligence', 'Get exclusive polling data and strategic analysis direct to your inbox.', 'Subscribe') }}
   </div>
 </section>
+
+{{ cta.section('Stay ahead with Ace intelligence.', 'Contact us today', '/contact/', '', 'dark', 'Ace intelligence.') }}
 
 <script>
 (function () {

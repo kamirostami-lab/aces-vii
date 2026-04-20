@@ -1,0 +1,12 @@
+{% macro pollingBar(data, sourceText = 'Source: DemosAU / Ace Strategies', isFallback = false) %}
+<div class="poll-vis-container">
+  <div class="poll-header-row">
+    <span>Two-Party Preferred</span>
+    <span>{{ sourceText }}<span id="poll-fallback-badge">{% if isFallback %} — <em style="color:var(--gold);font-size:0.8em;">static data</em>{% endif %}</span></span>
+  </div>
+  <div class="poll-bar-track">
+    <div id="poll-bar-labor" class="poll-bar-segment segment-labor" data-value="{{ data.labor_tpp }}" style="width: 0%;">ALP {{ data.labor_tpp }}%</div>
+    <div id="poll-bar-liberal" class="poll-bar-segment segment-liberal" data-value="{{ data.liberal_tpp }}" style="width: 0%;">LIB {{ data.liberal_tpp }}%</div>
+  </div>
+</div>
+{% endmacro %}

@@ -5,6 +5,7 @@ description: Meet the Ace Strategies team — strategic communications and gover
 active_nav: /team/
 permalink: /team/index.html
 ---
+{% import "macros/cta-section.njk" as cta %}
 
 <section class="team-hero" data-theme="dark">
   <div class="hero-media">
@@ -35,9 +36,4 @@ permalink: /team/index.html
   </div>
 </section>
 
-<section class="cta-section" data-theme="dark">
-  <div class="cta-content">
-    <h2 class="cta-title">Work with <span class="highlight">the best</span></h2>
-    <a href="/contact/" class="cta-button">Contact us</a>
-  </div>
-</section>
+{{ cta.section('Work with the best', 'Contact us', '/contact/', '', 'dark', 'the best') }}
