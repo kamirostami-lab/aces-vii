@@ -1,0 +1,19 @@
+{% macro card(item) %}
+<article class="case-study-card">
+  <div class="case-media">
+    <img src="{{ item.data.image }}" alt="{{ item.data.image_alt }}" loading="lazy">
+  </div>
+  <div class="case-content">
+    <span class="case-category">{{ item.data.category }}</span>
+    <h2 class="case-client">{{ item.data.client }}</h2>
+    <h3 class="case-title">{{ item.data.title }}</h3>
+    <div class="case-body">{{ item.content | safe }}</div>
+    {% if item.data.quote %}
+    <div class="case-quote-box">
+      <blockquote class="case-quote">&ldquo;{{ item.data.quote }}&rdquo;</blockquote>
+      <cite class="case-author">{{ item.data.quote_author }}</cite>
+    </div>
+    {% endif %}
+  </div>
+</article>
+{% endmacro %}

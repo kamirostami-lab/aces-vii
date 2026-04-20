@@ -5,6 +5,12 @@ description: Ace Strategies provides expert strategic communications, government
 active_nav: /
 permalink: /index.html
 ---
+{% import "macros/client-marquee.njk" as marquee %}
+{% import "macros/service-capability-card.njk" as serviceCard %}
+{% import "macros/team-flip-card.njk" as teamCard %}
+{% import "macros/news-article-card.njk" as newsCard %}
+{% import "macros/testimonial-card.njk" as testimonialCard %}
+{% import "macros/cta-section.njk" as cta %}
 
 {# HERO SECTION #}
 <section class="hero hero--home" data-theme="dark">
@@ -43,14 +49,7 @@ permalink: /index.html
     <div class="carousel-wrapper">
       <div class="services-carousel-track" id="capabilities-carousel">
         {% for service in capabilities %}
-        <div class="service-bg-card {{ service.card_class | default('card-wide') }}">
-          <img src="{{ service.image }}" alt="{{ service.image_alt }}" class="service-img" loading="lazy">
-          <div class="service-card-content">
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.body }}</p>
-            <a href="{{ service.url }}" class="service-link-btn">Learn more</a>
-          </div>
-        </div>
+        {{ serviceCard.card(service) }}
         {% endfor %}
       </div>
     </div>
@@ -66,7 +65,6 @@ permalink: /index.html
   <div class="section-header" style="margin-bottom:32px;">
     <span class="section-label">Trusted By</span>
   </div>
-  {% import "macros/client-marquee.njk" as marquee %}
   {{ marquee.marquee(clients, '/assets/repository/images/clients/', '90s', true) }}
 </section>
 
@@ -84,14 +82,7 @@ permalink: /index.html
     <div class="testimonials-carousel-wrapper">
       <div class="testimonials-track" id="testimonials-carousel">
         {% for item in testimonials %}
-        <div class="testimonial-card">
-          <div class="quote-icon">&ldquo;</div>
-          <blockquote class="testimonial-quote">{{ item.quote }}</blockquote>
-          <div class="testimonial-author">
-            <cite class="author-name">{{ item.author }}</cite>
-            <span class="author-role">{{ item.role }}</span>
-          </div>
-        </div>
+        {{ testimonialCard.card(item.quote, item.author, item.role) }}
         {% endfor %}
       </div>
     </div>
@@ -111,21 +102,7 @@ permalink: /index.html
   </div>
   <div class="team-grid">
     {% for member in collections.teamMembers %}
-    <div class="team-card">
-      <div class="team-card-inner">
-        <div class="team-card-front">
-          <img src="{{ member.data.image_index }}" alt="{{ member.data.image_alt_index }}" loading="lazy">
-          <div class="team-info-overlay">
-            <h3 class="team-name">{{ member.data.name }}</h3>
-            <div class="team-role">{{ member.data.role }}</div>
-          </div>
-        </div>
-        <div class="team-card-back">
-          <p class="team-bio">{{ member.data.bio_short }}</p>
-          <a href="/team/#{{ member.data.id }}" class="team-social-btn">Read more</a>
-        </div>
-      </div>
-    </div>
+    {{ teamCard.card(member) }}
     {% endfor %}
   </div>
 </section>
@@ -144,12 +121,7 @@ permalink: /index.html
     <div class="news-carousel-wrapper">
       <div class="news-carousel-track" id="news-carousel">
         {% for article in collections.news %}
-        <div class="news-text-card">
-          <div class="news-date">{{ article.data.date | dateFormat }}</div>
-          <h3 class="news-card-title">{{ article.data.title }}</h3>
-          <p class="news-snippet">{{ article.data.excerpt }}</p>
-          <a href="/news/" class="news-read-link">Read more</a>
-        </div>
+        {{ newsCard.card(article, 'carousel') }}
         {% endfor %}
       </div>
     </div>
@@ -167,15 +139,8 @@ permalink: /index.html
     <h2 class="section-title">Industry Leadership</h2>
     <div class="section-divider"></div>
   </div>
-  {% import "macros/client-marquee.njk" as marquee %}
   {{ marquee.marquee(affiliations, '/assets/repository/images/clients/', '90s', true) }}
 </section>
 
 {# CTA #}
-<section class="cta-section" data-theme="dark">
-  <div class="cta-content">
-    <h2 class="cta-title">Ready to achieve <span class="highlight">clarity and impact?</span></h2>
-    <p class="cta-sub">Partner with Ace Strategies.</p>
-    <a href="/contact/" class="cta-button">Contact us today</a>
-  </div>
-</section>
+{{ cta.section("Ready to achieve clarity and impact?", 'Contact us today', '/contact/', 'Partner with Ace Strategies.', 'dark', 'clarity and impact?') }}

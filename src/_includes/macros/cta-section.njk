@@ -1,0 +1,17 @@
+{% macro section(title, buttonText = 'Contact us today', buttonUrl = '/contact/', subtitle = '', theme = 'dark', highlightText = '') %}
+<section class="cta-section" data-theme="{{ theme }}">
+  <div class="cta-content">
+    <h2 class="cta-title">
+      {% if highlightText %}
+      {{ title | replace(highlightText, '<span class="highlight">' + highlightText + '</span>') | safe }}
+      {% else %}
+      {{ title | safe }}
+      {% endif %}
+    </h2>
+    {% if subtitle %}
+    <p class="cta-sub">{{ subtitle }}</p>
+    {% endif %}
+    <a href="{{ buttonUrl }}" class="cta-button">{{ buttonText }}</a>
+  </div>
+</section>
+{% endmacro %}
