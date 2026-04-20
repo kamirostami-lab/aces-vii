@@ -1,7 +1,9 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
   repo: kamirostami-lab/aces-vii
+  branch: main
+  base_url: https://acestrategies.au
+  auth_endpoint: /api/auth
 
 media_folder: "src/assets/repository/images/uploads"
 public_folder: "/assets/repository/images/uploads"
